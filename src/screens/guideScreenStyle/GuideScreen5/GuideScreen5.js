@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const AddExpeseScreen = () => {
+const GuideScreen5 = () => {
   return (
     <View>
-      <Text>AddExpeseScreen</Text>
+      <Text>GuideScreen5</Text>
     </View>
   )
 }
 
-export default AddExpeseScreen;
+export default GuideScreen5;
