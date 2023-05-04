@@ -1,1 +1,1 @@
-export {default as AddExpeseScreen} from './AddExpenseScreen';
+export {default as AddExpenseScreen} from './AddExpenseScreen';

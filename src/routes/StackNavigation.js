@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // screens
 import {
-    SplashScreen, ForgotPasswordScreen,
+    SplashScreen, ForgotPassword,
     SigninScreen, SignupScreen,
     ContactUsScreen, FaqScreen,
     ProfileScreen, RateUsScreen,
@@ -28,7 +28,7 @@ const StackNavigation = () => {
                 <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} />
                 <Stack.Screen name={RouteName.SIGNIN_SCREEN} component={SigninScreen} />
                 <Stack.Screen name={RouteName.SIGNUP_SCREEN} component={SignupScreen} />
-                <Stack.Screen name={RouteName.FORGOT_PASSWORD_SCREEN} component={ForgotPasswordScreen} />
+                <Stack.Screen name={RouteName.FORGOT_PASSWORD_SCREEN} component={ForgotPassword} />
                 <Stack.Screen name={RouteName.FAQS_SCREEN} component={FaqScreen} />
                 <Stack.Screen name={RouteName.CONTACT_US_SCREEN} component={ContactUsScreen} />
                 <Stack.Screen name={RouteName.ADD_INCOME_SCREEN} component={AddIncomeScreen} />
