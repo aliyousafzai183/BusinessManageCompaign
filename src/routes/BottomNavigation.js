@@ -84,7 +84,7 @@ function BottomNavigation() {
           tabBarButton: (props) => (
             <CustomTabBarButton {...props} />
           ),
-          header: () => <HeaderBar title="Income/Expense" />
+          header: () => <HeaderBar title="Add Report" />
         }}
       />
 
