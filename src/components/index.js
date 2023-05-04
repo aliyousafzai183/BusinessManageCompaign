@@ -1,4 +1,3 @@
-export * from './BottomBar';
 export * from './FilterModal';
 export * from './ForgotPasswordModal';
 export * from './HeaderBar';

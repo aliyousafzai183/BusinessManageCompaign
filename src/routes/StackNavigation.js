@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import BottomNavigator from './BottomNavigation';
+import RouteName from './RouteName';
 
 // screens
 import {
@@ -11,8 +13,6 @@ import {
     AddExpenseScreen, AddIncomeScreen,
 } from '../screens/index';
 
-import BottomNavigator from './BottomNavigation';
-import RouteName from './RouteName';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +21,7 @@ const StackNavigation = () => {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
-                    headerShown: true
+                    headerShown: false
                 }}
             >
                 <Stack.Screen name={RouteName.MAIN_SCREEN} component={BottomNavigator} />

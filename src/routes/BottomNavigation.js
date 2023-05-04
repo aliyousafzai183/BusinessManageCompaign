@@ -4,6 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { HeaderBar } from '../components/index';
 
 // screens
 import {
@@ -17,9 +18,9 @@ import colors from '../utils/colors';
 
 const Tab = createBottomTabNavigator();
 
-const CustomTabBarButton = ({ children, onpress }) => {
+const CustomTabBarButton = ({ children, onPress }) => {
   return (
-    <TouchableOpacity onPress={onpress} style={styles.plusButton}>
+    <TouchableOpacity onPress={onPress} style={styles.plusButton}>
       <View style={[styles.plusContainer, styles.shadow]}>
         {children}
       </View>
@@ -32,7 +33,6 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
-        headerShown: false,
         tabBarStyle: {
           position: 'absolute',
           bottom: 25,
@@ -55,7 +55,8 @@ function BottomNavigation() {
               <AntDesign name="home" size={25} color={focused ? colors.primary : '#C1BCCC'} />
               <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>HOME</Text>
             </View>
-          )
+          ),
+          header: () => <HeaderBar title="Dashboard" />
         }}
       />
 
@@ -68,7 +69,8 @@ function BottomNavigation() {
               <Feather name="activity" size={25} color={focused ? '#7F5DF0' : '#C1BCCC'} />
               <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>ACTIVITY</Text>
             </View>
-          )
+          ),
+          header: () => <HeaderBar title="Activity" />
         }}
       />
 
@@ -81,7 +83,8 @@ function BottomNavigation() {
           ),
           tabBarButton: (props) => (
             <CustomTabBarButton {...props} />
-          )
+          ),
+          header: () => <HeaderBar title="Income/Expense" />
         }}
       />
 
@@ -94,7 +97,8 @@ function BottomNavigation() {
               <Ionicons name="document-text-outline" size={25} color={focused ? '#7F5DF0' : '#C1BCCC'} />
               <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>REPORT</Text>
             </View>
-          )
+          ),
+          header: () => <HeaderBar title="Reports" />
         }}
       />
 
@@ -107,7 +111,8 @@ function BottomNavigation() {
               <FontAwesome5 name="bars" size={25} color={focused ? '#7F5DF0' : '#C1BCCC'} />
               <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>MENU</Text>
             </View>
-          )
+          ),
+          header: () => <HeaderBar title="Menu" />
         }}
       />
     </Tab.Navigator>
