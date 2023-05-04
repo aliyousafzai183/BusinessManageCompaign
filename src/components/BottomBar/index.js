@@ -1,1 +1,1 @@
-export * from './BottomBar';
+export {default as BottomBar} from './BottomBar';

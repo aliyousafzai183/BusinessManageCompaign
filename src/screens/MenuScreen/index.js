@@ -1,1 +1,1 @@
-export * from './MenuScreen';
+export {default as MenuScreen} from './MenuScreen';

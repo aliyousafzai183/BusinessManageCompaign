@@ -1,1 +1,1 @@
-export * from './FaqScreen';
+export {default as FaqScreen} from './FaqScreen';

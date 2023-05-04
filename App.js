@@ -1,11 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import StackNavigation from './src/routes/StackNavigation';
 
 const App = () => {
   return (
-    <View>
-      <Text>ALLAH IS GREAT!</Text>
-    </View>
+    <StackNavigation />
   )
 }
 

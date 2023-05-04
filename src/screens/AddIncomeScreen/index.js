@@ -1,1 +1,1 @@
-export * from './AddIncomeScreen';
+export {default as AddIncomeScreen} from './AddIncomeScreen';

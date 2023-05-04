@@ -1,1 +1,1 @@
-export * from './HeaderBar';
+export {default as HeaderBar} from './HeaderBar';
