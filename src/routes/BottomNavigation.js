@@ -20,7 +20,11 @@ const Tab = createBottomTabNavigator();
 
 const CustomTabBarButton = ({ children, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.plusButton}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.plusButton}
+      activeOpacity={1}
+    >
       <View style={[styles.plusContainer, styles.shadow]}>
         {children}
       </View>
@@ -144,8 +148,8 @@ const styles = StyleSheet.create({
   },
 
   plusContainer: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
     borderRadius: 35,
     backgroundColor: colors.primary
   }
