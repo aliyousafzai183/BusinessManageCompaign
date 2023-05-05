@@ -1,18 +1,18 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 // styles
-import {UniversalContainerStyle as styles} from '../../styles/index';
+import { UniversalContainerStyle as styles } from '../../styles/index';
+import LinearGradient from 'react-native-linear-gradient';
+import colors from '../../utils/colors';
 
 const HomeScreeen = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.innerContainer}>
-      <ScrollView>
-      <Text>HomeScreeen</Text>
-      </ScrollView>
-    </View>
-    </View>
+      <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
+        <ScrollView>
+          <Text style={{color:'black'}}>HomeScreeen</Text>
+        </ScrollView>
+      </LinearGradient>
   )
 }
 

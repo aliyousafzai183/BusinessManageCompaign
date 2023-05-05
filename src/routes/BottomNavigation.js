@@ -43,7 +43,7 @@ function BottomNavigation() {
           left: 20,
           right: 20,
           elevation: 0,
-          backgroundColor: colors.background,
+          backgroundColor: colors.linear1,
           borderRadius: 15,
           height: 70,
           ...styles.shadow
@@ -56,8 +56,8 @@ function BottomNavigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
-              <AntDesign name="home" size={25} color={focused ? colors.primary : '#C1BCCC'} />
-              <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>HOME</Text>
+              <AntDesign name="home" size={25} color={focused ? colors.primary : colors.linear2} />
+              <Text style={{ color: focused ? colors.primary : colors.linear2, fontSize: 12 }}>HOME</Text>
             </View>
           ),
           header: () => <HeaderBar title="Dashboard" />
@@ -70,8 +70,8 @@ function BottomNavigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
-              <Feather name="activity" size={25} color={focused ? '#7F5DF0' : '#C1BCCC'} />
-              <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>ACTIVITY</Text>
+              <Feather name="activity" size={25} color={focused ? colors.primary : colors.linear2} />
+              <Text style={{ color: focused ? colors.primary : colors.linear2, fontSize: 12 }}>ACTIVITY</Text>
             </View>
           ),
           header: () => <HeaderBar title="Activity" />
@@ -98,8 +98,8 @@ function BottomNavigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
-              <Ionicons name="document-text-outline" size={25} color={focused ? '#7F5DF0' : '#C1BCCC'} />
-              <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>REPORT</Text>
+              <Ionicons name="document-text-outline" size={25} color={focused ? colors.primary : colors.linear2} />
+              <Text style={{ color: focused ? colors.primary : colors.linear2, fontSize: 12 }}>REPORT</Text>
             </View>
           ),
           header: () => <HeaderBar title="Reports" />
@@ -112,8 +112,8 @@ function BottomNavigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
-              <FontAwesome5 name="bars" size={25} color={focused ? '#7F5DF0' : '#C1BCCC'} />
-              <Text style={{ color: focused ? '#7F5DF0' : '#C1BCCC', fontSize: 12 }}>MENU</Text>
+              <FontAwesome5 name="bars" size={25} color={focused ? colors.primary : colors.linear2} />
+              <Text style={{ color: focused ? colors.primary : colors.linear2, fontSize: 12 }}>MENU</Text>
             </View>
           ),
           header: () => <HeaderBar title="Menu" />
@@ -151,6 +151,6 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: colors.primary
+    backgroundColor: '#75d9a7'
   }
 })

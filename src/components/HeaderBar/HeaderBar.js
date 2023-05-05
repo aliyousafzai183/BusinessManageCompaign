@@ -2,18 +2,19 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import colors from '../../utils/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import LinearGradient from 'react-native-linear-gradient';
 
 const HeaderBar = ({ title, onPress }) => {
   return (
-    <View style={styles.mainContainer}>
-      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
+    <LinearGradient colors={[colors.linear1, colors.linear1]} style={styles.mainContainer}>
+      <StatusBar backgroundColor={colors.linear1} barStyle="light-content" />
       <View style={styles.secondContainer}>
         <Text style={styles.title}>{title}</Text>
         <TouchableOpacity onPress={onPress} style={styles.button}>
           <Ionicons name="ios-help-circle-outline" size={25} color={colors.helpColor} />
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -24,6 +25,8 @@ const styles = StyleSheet.create({
     height: 90,
     backgroundColor: colors.primary,
     justifyContent: 'center',
+    borderBottomWidth:1,
+    borderColor:colors.text
   },
 
   secondContainer: {
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 20,
     fontWeight: 'bold',
-    color: colors.background,
+    color: colors.text,
     textAlign: 'center',
   },
 

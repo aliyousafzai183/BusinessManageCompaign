@@ -11,6 +11,7 @@ import {
     ContactUsScreen, FaqScreen,
     ProfileScreen, RateUsScreen,
     AddExpenseScreen, AddIncomeScreen,
+    SecondSplashScreen
 } from '../screens/index';
 
 
@@ -24,8 +25,9 @@ const StackNavigation = () => {
                     headerShown: false
                 }}
             >
-                <Stack.Screen name={RouteName.MAIN_SCREEN} component={BottomNavigator} />
                 <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} />
+                <Stack.Screen name={RouteName.SECOND_SPLASH_SCREEN} component={SecondSplashScreen} />
+                <Stack.Screen name={RouteName.MAIN_SCREEN} component={BottomNavigator} />
                 <Stack.Screen name={RouteName.SIGNIN_SCREEN} component={SigninScreen} />
                 <Stack.Screen name={RouteName.SIGNUP_SCREEN} component={SignupScreen} />
                 <Stack.Screen name={RouteName.FORGOT_PASSWORD_SCREEN} component={ForgotPassword} />

@@ -68,18 +68,19 @@ const AddExpenseScreen = ({navigation}) => {
           styles.textInput,
           vendorNameFocused && { borderColor: colors.primary }
         ]}
+        placeholderTextColor={colors.label}
         placeholder={
           vendorNameFocused
-            ?
-            ''
-            :
-            "Vendor Name"
+          ?
+          ''
+          :
+          "Vendor Name"
         }
         value={vendorName}
         onChangeText={setVendorName}
         onFocus={() => setVendorNameFocused(true)}
         onBlur={() => setVendorNameFocused(false)}
-      />
+        />
 
       {
         totalExpenseFocused
@@ -87,17 +88,18 @@ const AddExpenseScreen = ({navigation}) => {
           <Text style={styles.label}>How much was the expense?</Text>
           :
           <></>
-      }
+        }
       <TextInput
         style={[
           styles.textInput,
           totalExpenseFocused && { borderColor: colors.primary }
         ]}
+        placeholderTextColor={colors.label}
         placeholder={
           totalExpenseFocused
-            ?
-            ''
-            :
+          ?
+          ''
+          :
             "How much was the expense?"
         }
         value={totalExpense}
@@ -109,16 +111,17 @@ const AddExpenseScreen = ({navigation}) => {
 
       {
         reasonFocused
-          ?
-          <Text style={styles.label}>Description</Text>
-          :
-          <></>
+        ?
+        <Text style={styles.label}>Description</Text>
+        :
+        <></>
       }
       <TextInput
         style={[
           styles.textInput,
           reasonFocused && { borderColor: colors.primary }
         ]}
+        placeholderTextColor={colors.label}
         placeholder={
           reasonFocused
             ?
@@ -133,7 +136,7 @@ const AddExpenseScreen = ({navigation}) => {
       />
 
       <View style={styles.radioContainer}>
-        <Text style={styles.inputButtonLabel}>Has this been received?</Text>
+        <Text style={styles.inputButtonLabel}>Has this been paid?</Text>
 
         <TouchableOpacity
           style={{ flexDirection: 'row', alignItems: 'center' }}
@@ -174,7 +177,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: '40%',
     alignSelf: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.linear2,
     marginBottom: '5%'
   },
   textInput: {
@@ -183,6 +186,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: '5%',
+    color:colors.text
   },
   textInputCost: {
     borderWidth: 1,
@@ -191,7 +195,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.linear1,
     borderRadius: 10,
     padding: 10,
     marginBottom: '50%'
@@ -202,8 +206,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: colors.background,
-    fontSize: 20
+    color: colors.label,
+    fontSize: 20,
+    fontWeight:'bold'
   },
   costOfSaleContainer: {
     flexDirection: 'column',

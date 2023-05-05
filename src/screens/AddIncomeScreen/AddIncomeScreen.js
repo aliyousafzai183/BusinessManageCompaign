@@ -86,11 +86,12 @@ const AddIncomeScreen = ({navigation}) => {
             :
             "Orders received"
         }
+        placeholderTextColor={colors.label}
         value={ordersReceived}
         onChangeText={setOrdersReceived}
         onFocus={() => setOrdersReceivedFocused(true)}
         onBlur={() => setOrdersReceivedFocused(false)}
-      />
+        />
 
       {
         itemNameFocused
@@ -104,12 +105,13 @@ const AddIncomeScreen = ({navigation}) => {
           styles.textInput,
           itemNameFocused && { borderColor: colors.primary }
         ]}
+        placeholderTextColor={colors.label}
         placeholder={
           itemNameFocused
-            ?
-            ''
-            :
-            "Item name (optional)"
+          ?
+          ''
+          :
+          "Item name (optional)"
         }
         value={itemName}
         onChangeText={setItemName}
@@ -119,47 +121,49 @@ const AddIncomeScreen = ({navigation}) => {
 
       {
         repeatOrdersFocused
-          ?
-          <Text style={styles.label}>How many orders from repeated customers?</Text>
-          :
-          <></>
+        ?
+        <Text style={styles.label}>How many orders from repeated customers?</Text>
+        :
+        <></>
       }
       <TextInput
         style={[
           styles.textInput,
           repeatOrdersFocused && { borderColor: colors.primary }
         ]}
+        placeholderTextColor={colors.label}
         placeholder={
           repeatOrdersFocused
-            ?
-            ''
-            :
+          ?
+          ''
+          :
             "How many orders from repeated customers?"
         }
         value={repeatOrders}
         onChangeText={setRepeatOrders}
         onFocus={() => setRepeatOrdersFocused(true)}
         onBlur={() => setRepeatOrdersFocused(false)}
-      />
+        />
 
       {
         totalIncomeFocused
-          ?
-          <Text style={styles.label}>Total income of these orders?</Text>
-          :
-          <></>
+        ?
+        <Text style={styles.label}>Total income of these orders?</Text>
+        :
+        <></>
       }
       <TextInput
         style={[
           styles.textInput,
           totalIncomeFocused && { borderColor: colors.primary }
         ]}
+        placeholderTextColor={colors.label}
         placeholder={
           totalIncomeFocused
-            ?
-            ''
-            :
-            "Total income of these orders?"
+          ?
+          ''
+          :
+          "Total income of these orders?"
         }
         value={totalIncome}
         onChangeText={setTotalIncome}
@@ -169,10 +173,10 @@ const AddIncomeScreen = ({navigation}) => {
 
       {
         costOfSaleFocused
-          ?
-          <Text style={styles.label}>What was the cost of sale?</Text>
-          :
-          <></>
+        ?
+        <Text style={styles.label}>What was the cost of sale?</Text>
+        :
+        <></>
       }
       <View style={styles.costOfSaleContainer}>
         <TextInput
@@ -180,9 +184,10 @@ const AddIncomeScreen = ({navigation}) => {
             styles.textInputCost,
             costOfSaleFocused && { borderColor: colors.primary }
           ]}
+          placeholderTextColor={colors.label}
           placeholder={
             costOfSaleFocused
-              ?
+            ?
               ''
               :
               "What was the cost of sale?"
@@ -204,16 +209,17 @@ const AddIncomeScreen = ({navigation}) => {
 
       {
         descriptionFocused
-          ?
-          <Text style={styles.label}>Description</Text>
-          :
-          <></>
+        ?
+        <Text style={styles.label}>Description</Text>
+        :
+        <></>
       }
       <TextInput
         style={[
           styles.textInput,
           descriptionFocused && { borderColor: colors.primary }
         ]}
+        placeholderTextColor={colors.label}
         placeholder={
           descriptionFocused
             ?
@@ -269,7 +275,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: '40%',
     alignSelf: 'center',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.linear2,
     marginBottom: '5%'
   },
   textInput: {
@@ -278,6 +284,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: '5%',
+    color:colors.text
   },
   textInputCost: {
     borderWidth: 1,
@@ -286,7 +293,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.linear1,
     borderRadius: 10,
     padding: 10,
     marginBottom: '40%'
@@ -297,8 +304,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: colors.background,
-    fontSize: 20
+    color: colors.label,
+    fontSize: 20,
+    fontWeight:'bold'
   },
   costOfSaleContainer: {
     flexDirection: 'column',

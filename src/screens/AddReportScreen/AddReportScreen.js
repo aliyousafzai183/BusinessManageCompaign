@@ -8,6 +8,7 @@ import { AddExpenseScreen, AddIncomeScreen } from './../index';
 
 // styles
 import { UniversalContainerStyle as customStyles } from '../../styles/index';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const SliderButton = ({ onPress, label, isActive, first }) => {
@@ -28,7 +29,7 @@ const SliderButton = ({ onPress, label, isActive, first }) => {
   );
 };
 
-const AddReportScreen = ({navigation}) => {
+const AddReportScreen = ({ navigation }) => {
   const swiperRef = useRef(null);
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
 
@@ -43,8 +44,8 @@ const AddReportScreen = ({navigation}) => {
   };
 
   return (
-    <View style={customStyles.container}>
-      <View style={customStyles.innerContainer}>
+    <LinearGradient colors={[colors.linear1, colors.linear2]} style={customStyles.container}>
+      <View style={{ flex: 1 }}>
         <View style={styles.buttonContainer}>
           <SliderButton label="Income" onPress={handleScreen1Press} isActive={activeScreenIndex === 0} first={true} />
           <SliderButton label="Expense" onPress={handleScreen2Press} isActive={activeScreenIndex === 1} first={false} />
@@ -57,11 +58,11 @@ const AddReportScreen = ({navigation}) => {
           index={0}
           onIndexChanged={index => setActiveScreenIndex(index)}
         >
-          <AddIncomeScreen navigation={navigation}/>
-          <AddExpenseScreen navigation={navigation}/>
+          <AddIncomeScreen navigation={navigation} />
+          <AddExpenseScreen navigation={navigation} />
         </Swiper>
       </View>
-    </View>
+    </LinearGradient>
   )
 }
 
@@ -79,26 +80,26 @@ const styles = StyleSheet.create({
     color: colors.primary,
   },
   activeSliderButtonContainer: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.linear2,
     padding: 10,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: colors.linear2,
   },
   inActiveSliderButtonContainer: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.linear1,
     padding: 10,
     borderWidth: 1,
-    borderColor: colors.primary,
+    borderColor: colors.linear2,
   },
   activeSliderButtonLabel: {
     color: colors.background,
   },
   inActiveSliderButtonLabel: {
-    color: colors.primary,
+    color: colors.label,
   },
   buttonContainer: {
     flexDirection: 'row',
-    marginBottom:'5%'
+    marginBottom: '5%'
   },
 
   secondButton: {
