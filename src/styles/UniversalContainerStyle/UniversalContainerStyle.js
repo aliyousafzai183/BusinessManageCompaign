@@ -8,11 +8,11 @@ const UniversalContainerStyle = StyleSheet.create({
     },
 
     innerContainer: {
-        backgroundColor: 'skyblue',
+        backgroundColor: colors.background,
         flex: 1,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        padding: 20
+        padding: 20,
     }
 })
 

@@ -28,7 +28,7 @@ const SliderButton = ({ onPress, label, isActive, first }) => {
   );
 };
 
-const AddReportScreen = () => {
+const AddReportScreen = ({navigation}) => {
   const swiperRef = useRef(null);
   const [activeScreenIndex, setActiveScreenIndex] = useState(0);
 
@@ -57,8 +57,8 @@ const AddReportScreen = () => {
           index={0}
           onIndexChanged={index => setActiveScreenIndex(index)}
         >
-          <AddIncomeScreen />
-          <AddExpenseScreen />
+          <AddIncomeScreen navigation={navigation}/>
+          <AddExpenseScreen navigation={navigation}/>
         </Swiper>
       </View>
     </View>
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
+    marginBottom:'5%'
   },
 
   secondButton: {
