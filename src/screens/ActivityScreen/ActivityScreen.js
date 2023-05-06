@@ -1,20 +1,20 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../../utils/colors';
-import {ActivityListComponent} from '../../components/index';
+import { ActivityListComponent } from '../../components/index';
 
 const ActivityScreen = () => {
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.searchContainer}>
-          <Icon name="search" size={20} color={colors.gray} style={styles.searchIcon} />
+          <Icon name="search" size={20} color={colors.background} style={styles.searchIcon} />
           <TextInput
             style={styles.textInput}
             placeholder="Search"
-            placeholderTextColor={colors.gray}
+            placeholderTextColor={colors.background}
           />
         </View>
         <TouchableOpacity style={styles.filterButton}>
@@ -22,20 +22,20 @@ const ActivityScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={{width:'100%', flex:1, height:'100%', paddingTop:'5%'}}>
+      <ScrollView style={{ width: '100%', flex: 1, height: '100%', paddingTop: '5%' }}>
         <ActivityListComponent
-          icon= "icon"
-          price= {234}
-          date= "12/04/2023"
-          paid = {true}
-          type = "Income"
+          icon="icon"
+          price={234}
+          date="12/04/2023"
+          paid={true}
+          type="Income"
         />
         <ActivityListComponent
-          icon= "icon"
-          price= {100}
-          date= "12/04/2023"
-          paid = {false}
-          type = "Expense"
+          icon="icon"
+          price={100}
+          date="12/04/2023"
+          paid={false}
+          type="Expense"
         />
 
       </ScrollView>
@@ -50,10 +50,10 @@ export default ActivityScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:'flex-start',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop:'5%',
-    paddingHorizontal:'5%'
+    paddingTop: '5%',
+    paddingHorizontal: '5%'
   },
   topContainer: {
     flexDirection: 'row',
@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
     marginRight: '5%',
   },
   searchIcon: {
-    marginHorizontal:'3%'
+    marginHorizontal: '3%'
   },
   textInput: {
     flex: 1,
     fontSize: 16,
     color: colors.black,
     borderRadius: 10,
-    color:colors.text
+    color: colors.background
   },
   filterButton: {
     width: 45,

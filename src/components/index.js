@@ -7,3 +7,5 @@ export * from './RadioButton';
 export * from './ReportComponent';
 export * from './CustomAlertModal';
 export * from './ActivityListComponent';
+export * from './HomeBoxComponent';
+export * from './AnalyticComponent';
