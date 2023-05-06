@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import BottomNavigator from './BottomNavigation';
 import RouteName from './RouteName';
+import colors from '../utils/colors';
 
 // screens
 import {
@@ -21,22 +22,26 @@ const StackNavigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
+            screenOptions={{
+                headerStyle:{
+                    backgroundColor: colors.linear1
+                },
+                headerTintColor:colors.text
+            }}
             >
-                <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} />
-                <Stack.Screen name={RouteName.SECOND_SPLASH_SCREEN} component={SecondSplashScreen} />
-                <Stack.Screen name={RouteName.MAIN_SCREEN} component={BottomNavigator} />
-                <Stack.Screen name={RouteName.SIGNIN_SCREEN} component={SigninScreen} />
-                <Stack.Screen name={RouteName.SIGNUP_SCREEN} component={SignupScreen} />
-                <Stack.Screen name={RouteName.FORGOT_PASSWORD_SCREEN} component={ForgotPassword} />
-                <Stack.Screen name={RouteName.FAQS_SCREEN} component={FaqScreen} />
-                <Stack.Screen name={RouteName.CONTACT_US_SCREEN} component={ContactUsScreen} />
-                <Stack.Screen name={RouteName.ADD_INCOME_SCREEN} component={AddIncomeScreen} />
-                <Stack.Screen name={RouteName.ADD_EXPENSE_SCREEN} component={AddExpenseScreen} />
-                <Stack.Screen name={RouteName.PROFILE_SCREEN} component={ProfileScreen} />
-                <Stack.Screen name={RouteName.RATE_US_SCREEN} component={RateUsScreen} />
+                <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.SECOND_SPLASH_SCREEN} component={SecondSplashScreen} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.MAIN_SCREEN} component={BottomNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.SIGNIN_SCREEN} component={SigninScreen} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.SIGNUP_SCREEN} component={SignupScreen} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.FAQS_SCREEN} component={FaqScreen} options={{ headerTitle: 'FAQs' }}/>
+                <Stack.Screen name={RouteName.CONTACT_US_SCREEN} component={ContactUsScreen}  options={{ headerTitle: 'Contact Us' }}/>
+                <Stack.Screen name={RouteName.ADD_INCOME_SCREEN} component={AddIncomeScreen} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.ADD_EXPENSE_SCREEN} component={AddExpenseScreen} options={{ headerShown: false }} />
+                <Stack.Screen name={RouteName.PROFILE_SCREEN} component={ProfileScreen}  options={{ headerTitle: 'Profile' }}/>
+                <Stack.Screen name={RouteName.RATE_US_SCREEN} component={RateUsScreen}  options={{ headerTitle: 'Rate Us' }}/>
+
             </Stack.Navigator>
         </NavigationContainer>
     );

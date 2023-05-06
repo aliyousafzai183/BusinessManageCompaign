@@ -3,14 +3,22 @@ import { View, Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-nativ
 import colors from '../../utils/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import RouteName from '../../routes/RouteName';
 
-const HeaderBar = ({ title, onPress }) => {
+const HeaderBar = ({ title }) => {
+  const navigation = useNavigation();
+
+  const onHelpPress = () => {
+    navigation.navigate(RouteName.FAQS_SCREEN);
+  };
+  
   return (
     <LinearGradient colors={[colors.linear1, colors.linear1]} style={styles.mainContainer}>
       <StatusBar backgroundColor={colors.linear1} barStyle="light-content" />
       <View style={styles.secondContainer}>
         <Text style={styles.title}>{title}</Text>
-        <TouchableOpacity onPress={onPress} style={styles.button}>
+        <TouchableOpacity onPress={onHelpPress} style={styles.button}>
           <Ionicons name="ios-help-circle-outline" size={25} color={colors.helpColor} />
         </TouchableOpacity>
       </View>
