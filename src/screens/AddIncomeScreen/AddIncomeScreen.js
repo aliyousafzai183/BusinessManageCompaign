@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: '40%',
     alignSelf: 'center',
-    backgroundColor: colors.linear2,
+    backgroundColor: colors.plusButton,
     marginBottom: '5%'
   },
   textInput: {

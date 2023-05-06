@@ -80,16 +80,16 @@ const styles = StyleSheet.create({
     color: colors.primary,
   },
   activeSliderButtonContainer: {
-    backgroundColor: colors.linear2,
+    backgroundColor: colors.plusButton,
     padding: 10,
     borderWidth: 1,
-    borderColor: colors.linear2,
+    borderColor: colors.plusButton,
   },
   inActiveSliderButtonContainer: {
     backgroundColor: colors.linear1,
     padding: 10,
     borderWidth: 1,
-    borderColor: colors.linear2,
+    borderColor: colors.plusButton,
   },
   activeSliderButtonLabel: {
     color: colors.background,

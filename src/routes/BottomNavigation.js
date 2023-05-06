@@ -151,6 +151,6 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: '#75d9a7'
+    backgroundColor: colors.plusButton
   }
 })

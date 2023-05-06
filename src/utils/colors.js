@@ -6,7 +6,8 @@ const colors = {
     text:'black',
     label: '#999999',
     linear1: '#C6F6DE',
-    linear2: '#9CC3FA'
+    linear2: '#9CC3FA',
+    plusButton: '#75d9a7'
 }
 
 export default colors;
