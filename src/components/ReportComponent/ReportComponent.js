@@ -7,7 +7,7 @@ import colors from '../../utils/colors';
 import RouteName from '../../routes/RouteName';
 import {CustomAlertModal} from '../index';
 
-const ReportComponent = ({ icon, title, description, route }) => {
+const ReportComponent = ({ icon, title, description, route, background }) => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -36,7 +36,7 @@ const ReportComponent = ({ icon, title, description, route }) => {
   return (
     <TouchableOpacity onPress={handlePress}>
       <View style={styles.itemContainer}>
-        <View style={styles.iconContainer}>
+      <View style={[styles.iconContainer, {backgroundColor: background}]}>
           <Icon name={icon} size={24} color={colors.background} />
         </View>
         <View style={styles.textContainer}>
@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
   },
 
   iconContainer: {
-    backgroundColor: colors.plusButton,
-    borderRadius: 24,
+    // backgroundColor: colors.plusButton,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     height: 48,

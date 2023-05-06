@@ -2,31 +2,31 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ToastAndroid } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon1 from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../utils/colors';
+import RouteName from '../../routes/RouteName';
 
-const ActivityComponent = ({ price, date, paid, type, route }) => {
+const ActivityComponent = ({ price, date, paid, type }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate(route);
+      navigation.navigate(RouteName.ADD_REPORT_SCREEN);
   }
 
   const iconColor = paid ? colors.green : colors.red;
   const iconType = type === 'Income' ? 'arrow-down' : 'arrow-up';
   
   return (
-    <TouchableOpacity onPress={handlePress} style={{height: 100, width: '100%', }}>
+    <TouchableOpacity onPress={handlePress} style={{width: '100%', }}>
       <View style={styles.itemContainer}>
-        <View style={[styles.iconContainer, { backgroundColor: paid? colors.success : colors.failure }]}>
+        <TouchableOpacity style={[styles.iconContainer, { backgroundColor: paid? colors.success : colors.failure }]}>
           <Icon name={iconType} size={24} color={colors.background} />
-        </View>
+        </TouchableOpacity>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{price}</Text>
           <Text style={styles.description}>{type}</Text>
-          {/* <Text style={styles.date}>{date}</Text> */}
         </View>
         <View style={styles.buttonContainer}>
+          <Text style={styles.description}>{date}</Text>
           <TouchableOpacity style={[styles.button, { backgroundColor: paid ? colors.label : colors.failure }]} disabled={paid}>
             <Text style={styles.buttonText}>{paid ? 'Paid' : 'Mark as Paid'}</Text>
           </TouchableOpacity>
@@ -42,11 +42,12 @@ const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
+    paddingVertical: '3%',
+    paddingHorizontal: '6%',
     borderRadius: 20,
-    marginVertical: 10,
     backgroundColor: colors.linear1,
+    marginVertical:'2%',
+
     shadowColor: colors.text,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
@@ -79,11 +80,13 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   date: {
-    fontSize: 12,
+    fontSize: 8,
     color: colors.label,
   },
   buttonContainer: {
     justifyContent: 'center',
+    flexDirection:'column',
+    alignItems:'center',
   },
   button: {
     paddingVertical: 8,
@@ -91,6 +94,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    width:'100%'
   },
   buttonText: {
     color: colors.background,

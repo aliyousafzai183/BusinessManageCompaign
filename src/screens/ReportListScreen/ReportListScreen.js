@@ -13,18 +13,21 @@ const ReportListScreen = () => {
         title="Profit & Loss Report"
         description="Report of profit and loss statement"
         route={RouteName.ACTIVITY_SCREEN}
+        background="#F3A712"
         />
       <ReportComponent
         icon="chart-areaspline-variant"
         title="Income Report"
         description="Report of your business incomes"
         route={RouteName.ACTIVITY_SCREEN}
+        background="#28A745"
         />
       <ReportComponent
         icon="chart-histogram"
         title="Expense Report"
         description="Report of your business expenses"
         route={RouteName.ACTIVITY_SCREEN}
+        background="#DC3545"
       />
     </LinearGradient>
   );

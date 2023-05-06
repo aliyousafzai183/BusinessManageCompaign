@@ -18,7 +18,7 @@ const ActivityScreen = () => {
           />
         </View>
         <TouchableOpacity style={styles.filterButton}>
-          <Icon name="filter" size={20} color={colors.text} />
+          <Icon name="filter" size={20} color={colors.background} />
         </TouchableOpacity>
       </View>
 
