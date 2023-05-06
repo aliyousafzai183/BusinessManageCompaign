@@ -5,3 +5,4 @@ export * from './LoadingModal';
 export * from './LogoutModal';
 export * from './RadioButton';
 export * from './ReportComponent';
+export * from './CustomAlertModal';

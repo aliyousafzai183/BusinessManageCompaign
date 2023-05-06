@@ -18,6 +18,7 @@ const RouteName = {
     SIGNUP_SCREEN: 'signupscreen',
     SPLASH_SCREEN: 'splashscreen',
     SECOND_SPLASH_SCREEN: 'secondsplashscreen',
+    LOGOUT_SCREEN: 'logoutscreen',
 
     // guidance screens
     GUIDE_SCREEN1: 'guidescreen1',
