@@ -7,7 +7,9 @@ const colors = {
     label: '#999999',
     linear1: '#C6F6DE',
     linear2: '#9CC3FA',
-    plusButton: '#75d9a7'
+    plusButton: '#75d9a7',
+    success: '#8a2be2',
+    failure: '#EF5350'
 }
 
 export default colors;

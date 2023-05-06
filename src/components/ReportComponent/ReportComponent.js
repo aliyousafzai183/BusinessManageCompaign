@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    color: colors.text,
+    color: colors.label,
   },
   arrowContainer: {
     marginLeft: 16,

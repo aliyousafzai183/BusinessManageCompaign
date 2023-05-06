@@ -6,3 +6,4 @@ export * from './LogoutModal';
 export * from './RadioButton';
 export * from './ReportComponent';
 export * from './CustomAlertModal';
+export * from './ActivityListComponent';
