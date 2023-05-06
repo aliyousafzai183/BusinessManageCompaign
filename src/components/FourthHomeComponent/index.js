@@ -1,0 +1,1 @@
+export {default as FourthHomeComponent} from './FourthHomeComponent';

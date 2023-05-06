@@ -9,3 +9,5 @@ export * from './CustomAlertModal';
 export * from './ActivityListComponent';
 export * from './HomeBoxComponent';
 export * from './AnalyticComponent';
+export * from './ThirdHomeScreenComponent';
+export * from './FourthHomeComponent';
