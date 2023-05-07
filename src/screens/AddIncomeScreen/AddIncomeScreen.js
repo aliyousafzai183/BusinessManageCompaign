@@ -44,7 +44,7 @@ const AddIncomeScreen = ({navigation}) => {
     setCostOfSale('');
     setDescription('');
     setReceived(true);
-    navigation.navigate(RouteName.HOME_SCREEN);
+    navigation.navigate(RouteName.ACTIVITY_SCREEN);
   };
 
   return (
@@ -199,8 +199,7 @@ const AddIncomeScreen = ({navigation}) => {
         />
 
         <TouchableOpacity onPress={() => {
-          // Navigate to cost of sale website
-          console.log('Navigating to cost of sale website');
+          navigation.navigate(RouteName.FAQS_SCREEN);
         }}>
           <Text style={{ color: 'blue' }}>What is cost of sale?</Text>
         </TouchableOpacity>

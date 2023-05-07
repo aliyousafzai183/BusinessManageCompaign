@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, ScrollView, Modal, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -9,10 +9,17 @@ import { useRoute } from '@react-navigation/native';
 const ActivityScreen = () => {
   const route = useRoute();
   const { title } = route.params || {};
-  console.log(title);
+  
+  const checkFilterType = () => {
+    if (title && title.includes("Income")) {
+       return "Income Report";
+    } else if (title && title.includes("Expense")) {
+      return "Expense Report";
+    }
+    return "All Reports"
+  }
 
-  const [filtered, setFiltered] = useState(title ? title : "All Reports");
-
+  const [filtered, setFiltered] = useState(checkFilterType);
   const [data, setData] = useState([
     {
       icon: 'icon',
@@ -60,6 +67,11 @@ const ActivityScreen = () => {
   };
 
   const filteredData = data.filter(entry => filtered === "All Reports" || entry.type === filtered);
+
+  useEffect(() => {
+    const newFiltered = checkFilterType();
+    setFiltered(newFiltered);
+  }, [title]);
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>

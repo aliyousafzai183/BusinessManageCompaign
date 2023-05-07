@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Dimensions, BackHandler, Alert } from 'react-native';
 
 // styles
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
@@ -13,13 +13,57 @@ import {
   HomeBoxComponent, AnalyticComponent,
   ThirdHomeScreenComponent, FourthHomeComponent
 } from '../../components/index';
+import RouteName from '../../routes/RouteName';
 
 const { width, height } = Dimensions.get('window');
 
-const HomeScreeen = () => {
+const HomeScreeen = ({navigation}) => {
   const [showMetrics, setShowMetrics] = useState(false);
+  const [profileCompleted, setProfileCompleted] = useState(false);
+
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert('Exit App', 'Are you sure you want to exit?', [
+        {
+          text: 'No',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => BackHandler.exitApp(),
+        },
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, []);
+
+  handleProfileButton = () => {
+    navigation.navigate(RouteName.PROFILE_SCREEN);
+  }
+
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>
+      {
+        !profileCompleted
+          ?
+          <View style={styles.profileButtonContainer}>
+            <Text style={styles.profileText}>Your profile is incomplete!</Text>
+            <TouchableOpacity
+              onPress={handleProfileButton}
+            >
+              <Text style={styles.buttonText}>
+                Lets Complete it
+              </Text>
+            </TouchableOpacity>
+          </View>
+          :
+          <></>
+      }
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
@@ -54,8 +98,8 @@ const HomeScreeen = () => {
           onPress={() => setShowMetrics(!showMetrics)}
           style={styles.button}
         >
-        <Text style={styles.text}>See Your Business Metrics</Text>
-        <MaterialIcons name={showMetrics ? "keyboard-arrow-up" : "keyboard-arrow-down"} size={30} color={colors.text} />
+          <Text style={styles.text}>See Your Business Metrics</Text>
+          <MaterialIcons name={showMetrics ? "keyboard-arrow-up" : "keyboard-arrow-down"} size={30} color={colors.plusButton} />
         </TouchableOpacity>
 
         {
@@ -147,7 +191,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 18,
-    color: colors.text,
+    color: colors.plusButton,
   },
 
   button: {
@@ -175,4 +219,21 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
   },
+
+  profileButtonContainer:{
+    paddingHorizontal:'7%',
+    flexDirection:'row',
+    marginBottom:'5%'
+  },
+
+  profileText:{
+    fontSize:15,
+    color:colors.text
+  },
+
+  buttonText:{
+    fontSize:15,
+    color:colors.failure,
+    marginLeft:'3%'
+  }
 })

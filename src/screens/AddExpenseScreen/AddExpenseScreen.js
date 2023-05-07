@@ -33,7 +33,7 @@ const AddExpenseScreen = ({navigation}) => {
     setVendorName('');
     setTotalExpense('');
     setReason('');
-    navigation.navigate(RouteName.HOME_SCREEN);
+    navigation.navigate(RouteName.ACTIVITY_SCREEN);
   };
 
   return (
