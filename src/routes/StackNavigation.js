@@ -12,7 +12,7 @@ import {
     ContactUsScreen, FaqScreen,
     ProfileScreen, RateUsScreen,
     AddExpenseScreen, AddIncomeScreen,
-    SecondSplashScreen
+    SecondSplashScreen, ProfitLossReportScreen
 } from '../screens/index';
 
 
@@ -26,7 +26,7 @@ const StackNavigation = () => {
                 headerStyle:{
                     backgroundColor: colors.linear1
                 },
-                headerTintColor:colors.text
+                headerTintColor:colors.linear2
             }}
             >
                 <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} options={{ headerShown: false }} />
@@ -41,6 +41,7 @@ const StackNavigation = () => {
                 <Stack.Screen name={RouteName.ADD_EXPENSE_SCREEN} component={AddExpenseScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.PROFILE_SCREEN} component={ProfileScreen}  options={{ headerTitle: 'Profile' }}/>
                 <Stack.Screen name={RouteName.RATE_US_SCREEN} component={RateUsScreen}  options={{ headerTitle: 'Rate Us' }}/>
+                <Stack.Screen name={RouteName.PROFIT_LOSS_REPORT_SCREEN} component={ProfitLossReportScreen}  options={{ headerTitle: 'Profit & Loss Report' }}/>
 
             </Stack.Navigator>
         </NavigationContainer>

@@ -12,7 +12,7 @@ const ReportListScreen = () => {
         icon="chart-pie"
         title="Profit & Loss Report"
         description="Report of profit and loss statement"
-        route={RouteName.ACTIVITY_SCREEN}
+        route={RouteName.PROFIT_LOSS_REPORT_SCREEN}
         background="#F3A712"
         />
       <ReportComponent

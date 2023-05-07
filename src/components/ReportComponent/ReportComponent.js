@@ -29,7 +29,7 @@ const ReportComponent = ({ icon, title, description, route, background }) => {
     if (route === RouteName.LOGOUT_SCREEN) {
       handleLogoutPress();
     } else {
-      navigation.navigate(route);
+      navigation.navigate(route, { title: title });
     }
   };
 

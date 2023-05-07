@@ -11,6 +11,7 @@ const RouteName = {
     RATE_US_SCREEN: 'rateuscreen',
     MAIN_SCREEN: 'mainscreen',
     REPORT_LIST_SCREEN: 'reportlistscreen',
+    PROFIT_LOSS_REPORT_SCREEN: 'profitlossreportscreen',
 
     // authentication screens
     FORGOT_PASSWORD_SCREEN: 'forgotpasswordscreen',
