@@ -5,7 +5,7 @@ import colors from '../../utils/colors';
 import { RadioButton } from '../../components';
 import RouteName from '../../routes/RouteName';
 import { AddIncomeScreenStyle as styles } from '../../styles/index';
-import InsertData from '../../db/data/InsertData';
+import db from '../../db/data/db';
 
 const AddIncomeScreen = ({ navigation }) => {
   const [date, setDate] = useState(new Date());
@@ -38,6 +38,10 @@ const AddIncomeScreen = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
+    if (!ordersReceived.trim() || !repeatOrders.trim() || !totalIncome.trim() || !costOfSale.trim()) {
+      ToastAndroid.show("Please fill necessary fields", ToastAndroid.LONG);
+      return;
+    }
     setOrdersReceived('');
     setItemName('');
     setRepeatOrders('');
@@ -56,8 +60,7 @@ const AddIncomeScreen = ({ navigation }) => {
             ToastAndroid.show("Added Report", ToastAndroid.LONG);
             navigation.navigate(RouteName.ACTIVITY_SCREEN);
           },
-    
-          error => ToastAndroid.show("Error Adding Report", ToastAndroid.LONG)
+          error => console.log('Error inserting data: ', error)
         );
       });
     } catch (error) {

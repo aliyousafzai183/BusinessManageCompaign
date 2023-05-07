@@ -88,8 +88,7 @@ function BottomNavigation() {
           tabBarButton: (props) => (
             <CustomTabBarButton {...props} />
           ),
-          header: () => <HeaderBar title="Add Report" />
-        }}
+          header: () => <HeaderBar title="Add Report" />        }}
       />
 
       <Tab.Screen

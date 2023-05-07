@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         height: 48,
         width: 48,
         marginRight: 16,
+        backgroundColor:colors.failure
     },
     textContainer: {
         flex: 1,

@@ -32,6 +32,10 @@ const AddExpenseScreen = ({ navigation }) => {
   };
 
   const handleSubmit = () => {
+    if (!vendorName.trim() || !totalExpense.trim()) {
+      ToastAndroid.show("Please fill necessary fields", ToastAndroid.LONG);
+      return;
+    }
     try {
       db.transaction(tx => {
         tx.executeSql(
@@ -41,11 +45,9 @@ const AddExpenseScreen = ({ navigation }) => {
             ToastAndroid.show("Added Report", ToastAndroid.LONG);
             navigation.navigate(RouteName.ACTIVITY_SCREEN);
           },
-    
           error => ToastAndroid.show("Error Adding Report", ToastAndroid.LONG)
         );
       });
-      
       setVendorName('');
       setTotalExpense('');
       setReason('');
@@ -53,6 +55,7 @@ const AddExpenseScreen = ({ navigation }) => {
       console.log('Error: ', error);
     }
   };
+  
   
 
 

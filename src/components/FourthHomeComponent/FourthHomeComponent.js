@@ -1,18 +1,19 @@
 import React from 'react';
-import { View, Text} from 'react-native';
-import {FourthHomeComponentStyle as styles} from '../../styles/components';
+import { View, Text } from 'react-native';
+import { FourthHomeComponentStyle as styles } from '../../styles/components';
 
 const FourthHomeComponent = ({ price, others }) => {
 
   const formatPrice = (price) => {
     if (price >= 1000000) {
-      return (price / 1000000).toFixed(1) + 'M';
+      return parseFloat((price / 1000000).toFixed(1)) + 'M';
     } else if (price >= 1000) {
-      return (price / 1000).toFixed(1) + 'K';
+      return parseFloat((price / 1000).toFixed(1)) + 'K';
     } else {
       return price.toFixed(1);
     }
   }
+
 
   return (
     <View style={styles.container}>

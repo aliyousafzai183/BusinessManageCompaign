@@ -4,13 +4,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../../utils/colors';
 import { ActivityListComponent } from '../../components/index';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useFocusEffect } from '@react-navigation/native';
 import { ActivityScreenStyle as styles } from '../../styles/index';
 import GetData from '../../db/data/GetData';
 
 const ActivityScreen = () => {
-  
-  const [filtered, setFiltered] = useState(checkFilterType);
+
   const route = useRoute();
   const { title } = route.params || {};
 
@@ -22,6 +21,8 @@ const ActivityScreen = () => {
     }
     return "All Reports"
   }
+
+  const [filtered, setFiltered] = useState(checkFilterType);
 
   const [data, setData] = useState([]);
 
@@ -40,20 +41,27 @@ const ActivityScreen = () => {
     closeModal();
   };
 
-  const filteredData = data.filter(entry => filtered === "All Reports" || entry.type === filtered);
-
-  useEffect(() => {
-    GetData().then(reports => {
-      setData(reports);
-    }).catch(error => {
-      console.log(error);
-    });
-  }, []);
+  const filteredData = data.filter(entry => 
+    filtered === "All Reports" || 
+    (entry.incomeReport && filtered === "Income") || 
+    (!entry.incomeReport && filtered === "Expense")
+  );
+  
+  useFocusEffect(
+    React.useCallback(() => {
+      GetData().then(reports => {
+        setData(reports);
+      }).catch(error => {
+        console.log(error);
+      });
+    }, [])
+  );
 
   useEffect(() => {
     const newFiltered = checkFilterType();
     setFiltered(newFiltered);
   }, [title]);
+
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
@@ -71,18 +79,18 @@ const ActivityScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={{ width: '100%', flex: 1, height: '100%', paddingTop: '5%' }}>
+      <ScrollView style={{ width: '100%', flex: 1, height: '100%', paddingTop: '5%' }} showsVerticalScrollIndicator={false}>
         {filteredData.map((entry, index) => (
-          // <ActivityListComponent
-          //   key={index}
-          //   icon={entry.icon}
-          //   price={entry.price}
-          //   date={entry.date}
-          //   paid={entry.paid}
-          //   type={entry.type}
-          // />
-          <View key={index}></View>
+          <ActivityListComponent
+            key={index}
+            id={entry.id}
+            price={entry.totalIncome}
+            date={entry.date}
+            paid={entry.paid === 1 ? true : false}
+            type={entry.incomeReport ? "Income" : "Expense"}
+          />
         ))}
+        <View style={{marginBottom:'50%'}}></View>
       </ScrollView>
 
       <Modal

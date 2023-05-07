@@ -7,7 +7,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {HomeScreenStyle as styles} from '../../styles/index';
+import { HomeScreenStyle as styles } from '../../styles/index';
+
+import GetData from '../../db/data/GetData';
+import { useFocusEffect } from '@react-navigation/native';
 
 // component
 import {
@@ -18,9 +21,34 @@ import RouteName from '../../routes/RouteName';
 
 const { width, height } = Dimensions.get('window');
 
-const HomeScreeen = ({navigation}) => {
+const HomeScreeen = ({ navigation }) => {
   const [showMetrics, setShowMetrics] = useState(false);
   const [profileCompleted, setProfileCompleted] = useState(false);
+  const [data, setData] = useState([]);
+
+  const [metrics, setMetrics] = useState({
+    totalRevenue: 0,
+    totalExpense: 0,
+    grossProfit: 0,
+    netProfit: 0,
+    retention: 0,
+    arpu: 0,
+    cac: 0,
+    aov: 0,
+    totalReceivable: 0,
+    totalPayable: 0,
+    payroll: 0,
+  });
+
+  useFocusEffect(
+    React.useCallback(() => {
+      GetData().then(reports => {
+        setData(reports);
+      }).catch(error => {
+        console.log(error);
+      });
+    }, [])
+  );
 
   useEffect(() => {
     const backAction = () => {
@@ -40,12 +68,50 @@ const HomeScreeen = ({navigation}) => {
 
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
 
-    return () => backHandler.remove();
+    return () => {
+      if (backHandler) {
+        backHandler.remove();
+      }
+    };
   }, []);
 
-  handleProfileButton = () => {
+
+  const handleProfileButton = () => {
     navigation.navigate(RouteName.PROFILE_SCREEN);
   }
+
+  // calculations
+  useEffect(() => {
+    // calculations
+    const totalRevenue = data.reduce((acc, item) => acc + item.totalIncome, 0);
+    const totalExpense = data.reduce((acc, item) => acc + item.costOfSale, 0);
+    const grossProfit = totalRevenue - totalExpense;
+    const netProfit = grossProfit; // assuming payroll is another expense
+    const retention = (new Set(data.map(item => item.previousCustomer)))
+      .size / data.length;
+    const arpu = totalRevenue / data.length;
+    const cac = totalExpense / data.length;
+    const aov = totalRevenue / (data.reduce((acc, item) => acc + item.numberOfSales, 0) || 1);
+    const totalReceivable = data.reduce((acc, item) => acc + item.accountsReceivable, 0);
+    const totalPayable = data.reduce((acc, item) => acc + item.accountsPayable, 0);
+    const payroll = data.reduce((acc, item) => acc + item.payroll, 0);
+
+    setMetrics({
+      totalRevenue,
+      totalExpense,
+      grossProfit,
+      netProfit,
+      retention,
+      arpu,
+      cac,
+      aov,
+      totalReceivable,
+      totalPayable,
+      payroll
+    });
+  }, [data]);
+
+  console.log(metrics);
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>
@@ -73,25 +139,25 @@ const HomeScreeen = ({navigation}) => {
           <HomeBoxComponent
             icon="wallet"
             title="Total Revenue"
-            price={2000}
+            price={metrics.totalRevenue}
             color='#26A69A'
           />
           <HomeBoxComponent
             icon="wallet"
             title="Total Expense"
-            price={500}
+            price={metrics.totalExpense}
             color='#FF7043'
           />
           <HomeBoxComponent
             icon="file-invoice-dollar"
             title="Gross Profit"
-            price={2000}
+            price={metrics.grossProfit}
             color='#8BC34A'
           />
           <HomeBoxComponent
             icon="money-bill-alt"
             title="Net Profit"
-            price={1500}
+            price={metrics.netProfit}
             color='#FFCA28'
           />
         </View>
@@ -109,31 +175,31 @@ const HomeScreeen = ({navigation}) => {
               <AnalyticComponent
                 icon="chart-line"
                 title="Retention"
-                value={27}
+                value={metrics.retention}
                 color="#2196F3"
               />
               <AnalyticComponent
                 icon="box-open"
-                title="Inventory"
-                value={0}
+                title="Position"
+                value={metrics.retention}
                 color="#4CAF50"
               />
               <AnalyticComponent
                 icon="dollar-sign"
                 title="ARPU"
-                value={213}
+                value={metrics.arpu}
                 color="#FF9800"
               />
               <AnalyticComponent
                 icon="users"
                 title="CAC"
-                value={2}
+                value={metrics.cac}
                 color="#E91E63"
               />
               <AnalyticComponent
                 icon="chart-bar"
                 title="AOV"
-                value={156}
+                value={metrics.aov}
                 color="#9C27B0"
               />
             </View>
@@ -146,21 +212,21 @@ const HomeScreeen = ({navigation}) => {
             <ThirdHomeScreenComponent
               icon="hand-holding-usd"
               title="Total Receivable"
-              price={2000}
+              price={metrics.totalReceivable}
               color='#008CBA'
             />
             <ThirdHomeScreenComponent
               icon="money-bill-wave"
               title="Total Payable"
-              price={500}
+              price={metrics.totalPayable}
               color='#FF7043'
             />
 
           </View>
           <View style={styles.innerWrapper}>
             <FourthHomeComponent
-              price={500}
-              others={0}
+              price={metrics.grossProfit}
+              others={metrics.netProfit}
             />
           </View>
           <View>
