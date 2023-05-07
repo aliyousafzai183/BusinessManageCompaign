@@ -26,7 +26,7 @@ const StackNavigation = () => {
                 headerStyle:{
                     backgroundColor: colors.linear1
                 },
-                headerTintColor:colors.linear2
+                headerTintColor:colors.primary
             }}
             >
                 <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} options={{ headerShown: false }} />
