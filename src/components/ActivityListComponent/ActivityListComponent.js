@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,7 +13,6 @@ const ActivityComponent = ({ price, date, paid, type }) => {
       navigation.navigate(RouteName.ADD_REPORT_SCREEN);
   }
 
-  const iconColor = paid ? colors.green : colors.red;
   const iconType = type === 'Income' ? 'arrow-down' : 'arrow-up';
   
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, ScrollView, Modal, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity, ScrollView, Modal, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../../utils/colors';
@@ -13,9 +13,9 @@ const ActivityScreen = () => {
   
   const checkFilterType = () => {
     if (title && title.includes("Income")) {
-       return "Income Report";
+       return "Income";
     } else if (title && title.includes("Expense")) {
-      return "Expense Report";
+      return "Expense";
     }
     return "All Reports"
   }
@@ -27,28 +27,28 @@ const ActivityScreen = () => {
       price: 234,
       date: '12/04/2023',
       paid: true,
-      type: 'Income Report'
+      type: 'Income'
     },
     {
       icon: 'icon',
       price: 100,
       date: '12/04/2023',
       paid: false,
-      type: 'Expense Report'
+      type: 'Expense'
     },
     {
       icon: 'icon',
       price: 300,
       date: '12/05/2023',
       paid: true,
-      type: 'Income Report'
+      type: 'Income'
     },
     {
       icon: 'icon',
       price: 50,
       date: '12/05/2023',
       paid: false,
-      type: 'Expense Report'
+      type: 'Expense'
     },
   ]);
 
@@ -116,10 +116,10 @@ const ActivityScreen = () => {
             <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("All Reports")}>
               <Text style={styles.modalButtonText}>All Reports</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("Income Report")}>
+            <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("Income")}>
               <Text style={styles.modalButtonText}>Income Report</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("Expense Report")}>
+            <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("Expense")}>
               <Text style={styles.modalButtonText}>Expense Report</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.modalCloseButton} onPress={() => setModalVisible(false)}>
