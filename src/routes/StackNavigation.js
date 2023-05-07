@@ -7,8 +7,7 @@ import colors from '../utils/colors';
 
 // screens
 import {
-    SplashScreen, ForgotPassword,
-    SigninScreen, SignupScreen,
+    SplashScreen,
     ContactUsScreen, FaqScreen,
     ProfileScreen, RateUsScreen,
     AddExpenseScreen, AddIncomeScreen,
@@ -26,15 +25,12 @@ const StackNavigation = () => {
                 headerStyle:{
                     backgroundColor: colors.linear1
                 },
-                headerTintColor:colors.primary
+                headerTintColor:colors.plusButton
             }}
             >
                 <Stack.Screen name={RouteName.SPLASH_SCREEN} component={SplashScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.SECOND_SPLASH_SCREEN} component={SecondSplashScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.MAIN_SCREEN} component={BottomNavigator} options={{ headerShown: false }} />
-                <Stack.Screen name={RouteName.SIGNIN_SCREEN} component={SigninScreen} options={{ headerShown: false }} />
-                <Stack.Screen name={RouteName.SIGNUP_SCREEN} component={SignupScreen} options={{ headerShown: false }} />
-                <Stack.Screen name={RouteName.FORGOT_PASSWORD_SCREEN} component={ForgotPassword} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.FAQS_SCREEN} component={FaqScreen} options={{ headerTitle: 'FAQs' }}/>
                 <Stack.Screen name={RouteName.CONTACT_US_SCREEN} component={ContactUsScreen}  options={{ headerTitle: 'Contact Us' }}/>
                 <Stack.Screen name={RouteName.ADD_INCOME_SCREEN} component={AddIncomeScreen} options={{ headerShown: false }} />
