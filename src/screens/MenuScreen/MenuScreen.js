@@ -31,11 +31,11 @@ const MenuScreen = () => {
         background="#6C757D"
         />
       <ReportComponent
-        icon="logout"
-        title="Logout"
-        description="We will be waiting for you"
+        icon="notification-clear-all"
+        title="Clear All Data"
+        description="Remove all data from app"
         route={RouteName.LOGOUT_SCREEN}
-        background="#FFC107"
+        background={colors.failure}
       />
     </LinearGradient>
   );

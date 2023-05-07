@@ -16,7 +16,7 @@ const ReportComponent = ({ icon, title, description, route, background }) => {
   };
 
   const handleLogoutConfirm = () => {
-    ToastAndroid.show('Logged out successfully', ToastAndroid.SHORT);
+    ToastAndroid.show('Removed All Data', ToastAndroid.SHORT);
     navigation.navigate(RouteName.HOME_SCREEN);
     setModalVisible(false);
   };
@@ -50,7 +50,7 @@ const ReportComponent = ({ icon, title, description, route, background }) => {
       <CustomAlertModal
         visible={modalVisible}
         title="Hang On!"
-        message="Are you sure you want to logout?"
+        message="Are you sure, all data will be reset from app?"
         onNoPress={handleLogoutCancel}
         onYesPress={handleLogoutConfirm}
       />
