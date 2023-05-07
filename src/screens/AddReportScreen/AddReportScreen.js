@@ -9,7 +9,7 @@ import { AddExpenseScreen, AddIncomeScreen } from './../index';
 // styles
 import { UniversalContainerStyle as customStyles } from '../../styles/index';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {AddReportScreenStyle as styles} from '../../styles/index';
 
 const SliderButton = ({ onPress, label, isActive, first }) => {
   return (
@@ -67,48 +67,3 @@ const AddReportScreen = ({ navigation }) => {
 }
 
 export default AddReportScreen;
-
-const styles = StyleSheet.create({
-  sliderButtonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  sliderButtonLabel: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: colors.primary,
-  },
-  activeSliderButtonContainer: {
-    backgroundColor: colors.plusButton,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: colors.plusButton,
-  },
-  inActiveSliderButtonContainer: {
-    backgroundColor: colors.linear1,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: colors.plusButton,
-  },
-  activeSliderButtonLabel: {
-    color: colors.background,
-  },
-  inActiveSliderButtonLabel: {
-    color: colors.label,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginBottom: '5%'
-  },
-
-  secondButton: {
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10
-  },
-
-  firstButton: {
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10
-  },
-});

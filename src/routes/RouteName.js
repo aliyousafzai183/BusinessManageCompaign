@@ -14,9 +14,6 @@ const RouteName = {
     PROFIT_LOSS_REPORT_SCREEN: 'profitlossreportscreen',
 
     // authentication screens
-    FORGOT_PASSWORD_SCREEN: 'forgotpasswordscreen',
-    SIGNIN_SCREEN: 'signinscreen',
-    SIGNUP_SCREEN: 'signupscreen',
     SPLASH_SCREEN: 'splashscreen',
     SECOND_SPLASH_SCREEN: 'secondsplashscreen',
     LOGOUT_SCREEN: 'logoutscreen',

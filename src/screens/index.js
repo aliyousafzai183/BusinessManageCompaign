@@ -8,6 +8,5 @@ export * from './FAQScreen';
 export * from './HomeScreen';
 export * from './MenuScreen';
 export * from './ProfileScreen';
-export * from './RateUsScreen';
 export * from './ReportListScreen';
 export * from './ProfitLossReportScreen';

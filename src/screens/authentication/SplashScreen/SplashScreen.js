@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet, ActivityIndicator, Animated, Easing } fr
 import RouteName from '../../../routes/RouteName';
 import colors from '../../../utils/colors';
 import LinearGradient from 'react-native-linear-gradient';
+import {SplashScreenStyle as styles} from '../../../styles/index';
 
 const SplashScreen = ({ navigation }) => {
   const spinValue = useRef(new Animated.Value(0)).current;
@@ -58,23 +59,3 @@ const SplashScreen = ({ navigation }) => {
 };
 
 export default SplashScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    padding:20,
-    justifyContent:'center',
-    alignItems:'center'
-  },
-
-  logo: {
-    height: '35%',
-    width: '35%',
-  },
-
-  text: {
-    color: colors.white,
-    fontSize: 16,
-    marginTop: 10
-  }
-});

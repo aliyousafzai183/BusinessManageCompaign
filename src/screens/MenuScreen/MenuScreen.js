@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 import RouteName from '../../routes/RouteName';
 import { ReportComponent } from '../../components/index';
+import {MenuScreenStyle as styles} from '../../styles/index';
 
 const MenuScreen = () => {
 
@@ -40,12 +41,5 @@ const MenuScreen = () => {
     </LinearGradient>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop:'3%'
-  },
-});
 
 export default MenuScreen;

@@ -9,7 +9,7 @@ import colors from '../utils/colors';
 import {
     SplashScreen,
     ContactUsScreen, FaqScreen,
-    ProfileScreen, RateUsScreen,
+    ProfileScreen,
     AddExpenseScreen, AddIncomeScreen,
     SecondSplashScreen, ProfitLossReportScreen
 } from '../screens/index';
@@ -36,7 +36,6 @@ const StackNavigation = () => {
                 <Stack.Screen name={RouteName.ADD_INCOME_SCREEN} component={AddIncomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.ADD_EXPENSE_SCREEN} component={AddExpenseScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.PROFILE_SCREEN} component={ProfileScreen}  options={{ headerTitle: 'Profile' }}/>
-                <Stack.Screen name={RouteName.RATE_US_SCREEN} component={RateUsScreen}  options={{ headerTitle: 'Rate Us' }}/>
                 <Stack.Screen name={RouteName.PROFIT_LOSS_REPORT_SCREEN} component={ProfitLossReportScreen}  options={{ headerTitle: 'Profit & Loss Report' }}/>
 
             </Stack.Navigator>

@@ -1,0 +1,1 @@
+export {default as ContactUsScreenStyle} from './ContactUsScreenStyle';
