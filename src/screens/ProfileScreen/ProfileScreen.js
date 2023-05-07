@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
-import {ProfileScreenStyle as styles} from '../../styles/index';
+import { ProfileScreenStyle as styles } from '../../styles/index';
+import SetData from '../../db/profile/SetData';
+import GetData from '../../db/profile/GetData';
 
 const ProfileScreen = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [businessName, setBusinessName] = useState('Fiver Freelance');
-  const [founderName, setFounderName] = useState('Mobile Developer');
-  const [phoneNumber, setPhoneNumber] = useState('+923473766183');
-  const [email, setEmail] = useState('codinglabs183@gmail.com');
-  const [currency, setCurrency] = useState('Pkr');
+  const [businessName, setBusinessName] = useState('');
+  const [founderName, setFounderName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [currency, setCurrency] = useState('');
 
   // for styling purpose
   const [businessNameFocused, setBusinessNameFocused] = useState(false);
@@ -22,9 +24,27 @@ const ProfileScreen = () => {
   const [currencyFocused, setCurrencyFocused] = useState(false);
 
   const handleSave = () => {
+    if (isEditing) {
+      setIsEditing(!isEditing);
+      SetData(businessName, founderName, phoneNumber, email, currency);
+    }
     setIsEditing(!isEditing);
-    // Save all data in state
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await GetData();
+      if (data != null) {
+        setBusinessName(data.businessName);
+        setFounderName(data.founderName);
+        setPhoneNumber(data.phoneNumber);
+        setEmail(data.email);
+        setCurrency(data.currency);
+      }
+    };
+
+    fetchData();
+  }, [isEditing]);
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>
@@ -146,7 +166,7 @@ const ProfileScreen = () => {
             onBlur={() => setEmailFocused(false)}
           />
 
-{
+          {
             currencyFocused
               ?
               <Text style={styles.label}>Currency</Text>

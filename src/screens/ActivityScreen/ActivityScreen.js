@@ -5,52 +5,25 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../../utils/colors';
 import { ActivityListComponent } from '../../components/index';
 import { useRoute } from '@react-navigation/native';
-import {ActivityScreenStyle as styles} from '../../styles/index';
+import { ActivityScreenStyle as styles } from '../../styles/index';
+import GetData from '../../db/data/GetData';
 
 const ActivityScreen = () => {
+  
+  const [filtered, setFiltered] = useState(checkFilterType);
   const route = useRoute();
   const { title } = route.params || {};
-  
+
   const checkFilterType = () => {
     if (title && title.includes("Income")) {
-       return "Income";
+      return "Income";
     } else if (title && title.includes("Expense")) {
       return "Expense";
     }
     return "All Reports"
   }
 
-  const [filtered, setFiltered] = useState(checkFilterType);
-  const [data, setData] = useState([
-    {
-      icon: 'icon',
-      price: 234,
-      date: '12/04/2023',
-      paid: true,
-      type: 'Income'
-    },
-    {
-      icon: 'icon',
-      price: 100,
-      date: '12/04/2023',
-      paid: false,
-      type: 'Expense'
-    },
-    {
-      icon: 'icon',
-      price: 300,
-      date: '12/05/2023',
-      paid: true,
-      type: 'Income'
-    },
-    {
-      icon: 'icon',
-      price: 50,
-      date: '12/05/2023',
-      paid: false,
-      type: 'Expense'
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -68,6 +41,14 @@ const ActivityScreen = () => {
   };
 
   const filteredData = data.filter(entry => filtered === "All Reports" || entry.type === filtered);
+
+  useEffect(() => {
+    GetData().then(reports => {
+      setData(reports);
+    }).catch(error => {
+      console.log(error);
+    });
+  }, []);
 
   useEffect(() => {
     const newFiltered = checkFilterType();
@@ -92,14 +73,15 @@ const ActivityScreen = () => {
 
       <ScrollView style={{ width: '100%', flex: 1, height: '100%', paddingTop: '5%' }}>
         {filteredData.map((entry, index) => (
-          <ActivityListComponent
-            key={index}
-            icon={entry.icon}
-            price={entry.price}
-            date={entry.date}
-            paid={entry.paid}
-            type={entry.type}
-          />
+          // <ActivityListComponent
+          //   key={index}
+          //   icon={entry.icon}
+          //   price={entry.price}
+          //   date={entry.date}
+          //   paid={entry.paid}
+          //   type={entry.type}
+          // />
+          <View key={index}></View>
         ))}
       </ScrollView>
 
@@ -110,7 +92,7 @@ const ActivityScreen = () => {
       >
         <TouchableOpacity
           style={styles.modalContainer}
-          onPress={()=>setModalVisible(false)}
+          onPress={() => setModalVisible(false)}
         >
           <View style={styles.modalView}>
             <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("All Reports")}>

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
       borderColor: 'gray',
       borderRadius: 10,
       padding: 10,
+      color:colors.text
     },
     button: {
       backgroundColor: colors.linear1,

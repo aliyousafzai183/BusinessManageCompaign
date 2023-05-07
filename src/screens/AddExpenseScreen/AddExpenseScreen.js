@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ToastAndroid } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import colors from '../../utils/colors';
 import { RadioButton } from '../../components';
 import RouteName from '../../routes/RouteName';
-import {AddExpenseScreenStyle as styles} from '../../styles/index';
+import { AddExpenseScreenStyle as styles } from '../../styles/index';
+import db from '../../db/data/db';
 
-const AddExpenseScreen = ({navigation}) => {
+const AddExpenseScreen = ({ navigation }) => {
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [vendorName, setVendorName] = useState('');
@@ -31,11 +32,29 @@ const AddExpenseScreen = ({navigation}) => {
   };
 
   const handleSubmit = () => {
-    setVendorName('');
-    setTotalExpense('');
-    setReason('');
-    navigation.navigate(RouteName.ACTIVITY_SCREEN);
+    try {
+      db.transaction(tx => {
+        tx.executeSql(
+          'INSERT INTO reports (incomeReport, vendorName, description, paid, date, ordersReceived, itemName, previousCustomer, totalIncome, costOfSale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+          [false, vendorName, reason, paid, date.toLocaleDateString(), '0', 'Ali', '2', totalExpense, '0'],
+          () => {
+            ToastAndroid.show("Added Report", ToastAndroid.LONG);
+            navigation.navigate(RouteName.ACTIVITY_SCREEN);
+          },
+    
+          error => ToastAndroid.show("Error Adding Report", ToastAndroid.LONG)
+        );
+      });
+      
+      setVendorName('');
+      setTotalExpense('');
+      setReason('');
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
+  
+
 
   return (
     <ScrollView
@@ -72,16 +91,16 @@ const AddExpenseScreen = ({navigation}) => {
         placeholderTextColor={colors.label}
         placeholder={
           vendorNameFocused
-          ?
-          ''
-          :
-          "Vendor Name"
+            ?
+            ''
+            :
+            "Vendor Name"
         }
         value={vendorName}
         onChangeText={setVendorName}
         onFocus={() => setVendorNameFocused(true)}
         onBlur={() => setVendorNameFocused(false)}
-        />
+      />
 
       {
         totalExpenseFocused
@@ -89,7 +108,7 @@ const AddExpenseScreen = ({navigation}) => {
           <Text style={styles.label}>How much was the expense?</Text>
           :
           <></>
-        }
+      }
       <TextInput
         style={[
           styles.textInput,
@@ -98,9 +117,9 @@ const AddExpenseScreen = ({navigation}) => {
         placeholderTextColor={colors.label}
         placeholder={
           totalExpenseFocused
-          ?
-          ''
-          :
+            ?
+            ''
+            :
             "How much was the expense?"
         }
         value={totalExpense}
@@ -112,10 +131,10 @@ const AddExpenseScreen = ({navigation}) => {
 
       {
         reasonFocused
-        ?
-        <Text style={styles.label}>Description</Text>
-        :
-        <></>
+          ?
+          <Text style={styles.label}>Description</Text>
+          :
+          <></>
       }
       <TextInput
         style={[

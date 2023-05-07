@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Image, Text, StyleSheet, ActivityIndicator, Animated, Easing } from 'react-native';
+import { Animated, Easing } from 'react-native';
 import RouteName from '../../../routes/RouteName';
 import colors from '../../../utils/colors';
 import LinearGradient from 'react-native-linear-gradient';
-import {SplashScreenStyle as styles} from '../../../styles/index';
+import { SplashScreenStyle as styles } from '../../../styles/index';
 
 const SplashScreen = ({ navigation }) => {
   const spinValue = useRef(new Animated.Value(0)).current;
@@ -47,13 +47,13 @@ const SplashScreen = ({ navigation }) => {
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
-        <Animated.Image 
-          source={require('../../../images/SplashLogo.png')} 
-          style={[
-            styles.logo, 
-            {transform: [{rotate: spin}, {translateX: -5}, {translateY: -5}, {rotate: shake}]},
-          ]} 
-          resizeMode='contain'/>
+      <Animated.Image
+        source={require('../../../images/SplashLogo.png')}
+        style={[
+          styles.logo,
+          { transform: [{ rotate: spin }, { translateX: -5 }, { translateY: -5 }, { rotate: shake }] },
+        ]}
+        resizeMode='contain' />
     </LinearGradient>
   );
 };

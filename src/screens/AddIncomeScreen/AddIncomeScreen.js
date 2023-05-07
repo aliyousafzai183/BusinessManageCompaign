@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ToastAndroid, ScrollView } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import colors from '../../utils/colors';
 import { RadioButton } from '../../components';
 import RouteName from '../../routes/RouteName';
-import {AddIncomeScreenStyle as styles} from '../../styles/index';
+import { AddIncomeScreenStyle as styles } from '../../styles/index';
+import InsertData from '../../db/data/InsertData';
 
-const AddIncomeScreen = ({navigation}) => {
+const AddIncomeScreen = ({ navigation }) => {
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [ordersReceived, setOrdersReceived] = useState('');
@@ -44,8 +45,27 @@ const AddIncomeScreen = ({navigation}) => {
     setCostOfSale('');
     setDescription('');
     setReceived(true);
-    navigation.navigate(RouteName.ACTIVITY_SCREEN);
+
+    try {
+      // inserting to db
+      db.transaction(tx => {
+        tx.executeSql(
+          'INSERT INTO reports (incomeReport, vendorName, description, paid, date, ordersReceived, itemName, previousCustomer, totalIncome, costOfSale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+          [true, 'Ali', description, received, date.toLocaleDateString(), ordersReceived, itemName, repeatOrders, totalIncome, costOfSale],
+          () => {
+            ToastAndroid.show("Added Report", ToastAndroid.LONG);
+            navigation.navigate(RouteName.ACTIVITY_SCREEN);
+          },
+    
+          error => ToastAndroid.show("Error Adding Report", ToastAndroid.LONG)
+        );
+      });
+    } catch (error) {
+      ToastAndroid.show(error, ToastAndroid.LONG);
+    }
   };
+
+
 
   return (
     <ScrollView
@@ -87,11 +107,12 @@ const AddIncomeScreen = ({navigation}) => {
             "Orders received"
         }
         placeholderTextColor={colors.label}
+        keyboardType='numeric'
         value={ordersReceived}
         onChangeText={setOrdersReceived}
         onFocus={() => setOrdersReceivedFocused(true)}
         onBlur={() => setOrdersReceivedFocused(false)}
-        />
+      />
 
       {
         itemNameFocused
@@ -108,10 +129,10 @@ const AddIncomeScreen = ({navigation}) => {
         placeholderTextColor={colors.label}
         placeholder={
           itemNameFocused
-          ?
-          ''
-          :
-          "Item name (optional)"
+            ?
+            ''
+            :
+            "Item name (optional)"
         }
         value={itemName}
         onChangeText={setItemName}
@@ -121,10 +142,10 @@ const AddIncomeScreen = ({navigation}) => {
 
       {
         repeatOrdersFocused
-        ?
-        <Text style={styles.label}>How many orders from repeated customers?</Text>
-        :
-        <></>
+          ?
+          <Text style={styles.label}>How many orders from repeated customers?</Text>
+          :
+          <></>
       }
       <TextInput
         style={[
@@ -134,23 +155,24 @@ const AddIncomeScreen = ({navigation}) => {
         placeholderTextColor={colors.label}
         placeholder={
           repeatOrdersFocused
-          ?
-          ''
-          :
+            ?
+            ''
+            :
             "How many orders from repeated customers?"
         }
         value={repeatOrders}
+        keyboardType='numeric'
         onChangeText={setRepeatOrders}
         onFocus={() => setRepeatOrdersFocused(true)}
         onBlur={() => setRepeatOrdersFocused(false)}
-        />
+      />
 
       {
         totalIncomeFocused
-        ?
-        <Text style={styles.label}>Total income of these orders?</Text>
-        :
-        <></>
+          ?
+          <Text style={styles.label}>Total income of these orders?</Text>
+          :
+          <></>
       }
       <TextInput
         style={[
@@ -160,11 +182,12 @@ const AddIncomeScreen = ({navigation}) => {
         placeholderTextColor={colors.label}
         placeholder={
           totalIncomeFocused
-          ?
-          ''
-          :
-          "Total income of these orders?"
+            ?
+            ''
+            :
+            "Total income of these orders?"
         }
+        keyboardType='numeric'
         value={totalIncome}
         onChangeText={setTotalIncome}
         onFocus={() => setTotalIncomeFocused(true)}
@@ -173,10 +196,10 @@ const AddIncomeScreen = ({navigation}) => {
 
       {
         costOfSaleFocused
-        ?
-        <Text style={styles.label}>What was the cost of sale?</Text>
-        :
-        <></>
+          ?
+          <Text style={styles.label}>What was the cost of sale?</Text>
+          :
+          <></>
       }
       <View style={styles.costOfSaleContainer}>
         <TextInput
@@ -187,12 +210,13 @@ const AddIncomeScreen = ({navigation}) => {
           placeholderTextColor={colors.label}
           placeholder={
             costOfSaleFocused
-            ?
+              ?
               ''
               :
               "What was the cost of sale?"
           }
           value={costOfSale}
+          keyboardType='numeric'
           onChangeText={setCostOfSale}
           onFocus={() => setCostOfSaleFocused(true)}
           onBlur={() => setCostOfSaleFocused(false)}
@@ -208,10 +232,10 @@ const AddIncomeScreen = ({navigation}) => {
 
       {
         descriptionFocused
-        ?
-        <Text style={styles.label}>Description</Text>
-        :
-        <></>
+          ?
+          <Text style={styles.label}>Description</Text>
+          :
+          <></>
       }
       <TextInput
         style={[

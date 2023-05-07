@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ToastAndroid } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon1 from 'react-native-vector-icons/MaterialIcons';
@@ -7,6 +7,7 @@ import colors from '../../utils/colors';
 import RouteName from '../../routes/RouteName';
 import {CustomAlertModal} from '../index';
 import {ReportComponentStyle as styles} from '../../styles/components';
+import DeleteData from '../../db/profile/DeleteData';
 
 const ReportComponent = ({ icon, title, description, route, background }) => {
   const navigation = useNavigation();
@@ -17,7 +18,7 @@ const ReportComponent = ({ icon, title, description, route, background }) => {
   };
 
   const handleLogoutConfirm = () => {
-    ToastAndroid.show('Removed All Data', ToastAndroid.SHORT);
+    DeleteData();
     navigation.navigate(RouteName.HOME_SCREEN);
     setModalVisible(false);
   };

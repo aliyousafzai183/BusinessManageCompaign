@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../utils/colors';
 import RouteName from '../../routes/RouteName';
 import {ActivityListComponentStyle as styles} from '../../styles/components';
+import GetData from '../../db/profile/GetData';
 
 const ActivityComponent = ({ price, date, paid, type }) => {
+  const [currency, setCurrency] = useState('');
   const navigation = useNavigation();
 
   const handlePress = () => {
       navigation.navigate(RouteName.ADD_REPORT_SCREEN);
   }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = async () => {
+        const data = await GetData();
+        if (data != null) {
+          setCurrency(data.currency);
+        }
+      };
+      fetchData();
+    }, [])
+  );
 
   const iconType = type === 'Income' ? 'arrow-down' : 'arrow-up';
   
@@ -22,7 +36,7 @@ const ActivityComponent = ({ price, date, paid, type }) => {
           <Icon name={iconType} size={24} color={colors.background} />
         </TouchableOpacity>
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{price}</Text>
+          <Text style={styles.title}>{price} {currency}</Text>
           <Text style={styles.description}>{type}</Text>
         </View>
         <View style={styles.buttonContainer}>
