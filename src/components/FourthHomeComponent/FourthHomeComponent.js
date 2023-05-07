@@ -1,11 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import Fontisto from 'react-native-vector-icons/FontAwesome5';
-
-// styles
-import colors from '../../utils/colors';
-
-const {width} = Dimensions.get('window');
+import { View, Text} from 'react-native';
+import {FourthHomeComponentStyle as styles} from '../../styles/components';
 
 const FourthHomeComponent = ({ price, others }) => {
 
@@ -51,51 +46,3 @@ const FourthHomeComponent = ({ price, others }) => {
 }
 
 export default FourthHomeComponent;
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  title: {
-    fontSize: 10,
-    color: colors.text,
-    marginVertical: '2%'
-  },
-
-  price: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: colors.text,
-    marginVertical: '2%'
-  },
-
-  rollContainer: {
-    borderWidth: 10,
-    borderColor: '#FFD700',
-    borderRadius: 100,
-    paddingHorizontal: '12%',
-    paddingVertical: '12%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:'10%'
-  },
-
-  detailsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width:width/3
-  },
-
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-
-  box: {
-    width: '15%',
-    height: '60%',
-    marginRight: '10%'
-  }
-})

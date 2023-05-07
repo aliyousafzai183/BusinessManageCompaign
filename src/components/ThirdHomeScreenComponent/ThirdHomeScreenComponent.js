@@ -1,10 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text} from 'react-native';
 import Fontisto from 'react-native-vector-icons/FontAwesome5';
-
-// styles
-import colors from '../../utils/colors';
-
+import {ThirdHomeScreenComponentStyle as styles} from '../../styles/components';
 
 const ThirdHomeScreenComponent = ({icon, title, price, color}) => {
 
@@ -28,22 +25,3 @@ const ThirdHomeScreenComponent = ({icon, title, price, color}) => {
 }
 
 export default ThirdHomeScreenComponent;
-
-const styles = StyleSheet.create({
-  container:{
-    alignItems:'center',
-    justifyContent:'center',
-  },
-
-  title:{
-    fontSize:14,
-    color:colors.text,
-    marginVertical:'2%'
-  },
-  
-  price:{
-    fontSize:16,
-    fontWeight:'bold',
-    marginVertical:'2%'
-  }
-})

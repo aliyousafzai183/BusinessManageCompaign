@@ -10,3 +10,4 @@ export * from './MenuScreenStyle';
 export * from './ProfileScreenStyle';
 export * from './SplashScreenStyle';
 export * from './SecondSplashScreenStyle';
+export * from './components';

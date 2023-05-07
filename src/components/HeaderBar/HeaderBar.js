@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import RouteName from '../../routes/RouteName';
+import {HeaderBarStyle as styles} from '../../styles/components';
 
 const HeaderBar = ({ title }) => {
   const navigation = useNavigation();
@@ -27,33 +28,3 @@ const HeaderBar = ({ title }) => {
 };
 
 export default HeaderBar;
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    height: 90,
-    backgroundColor: colors.primary,
-    justifyContent: 'center',
-    borderBottomWidth:1,
-    borderColor:colors.text
-  },
-
-  secondContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingTop: 16,
-  },
-
-  title: {
-    flex: 1,
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.text,
-    textAlign: 'center',
-  },
-
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-});

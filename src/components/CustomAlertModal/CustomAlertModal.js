@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import colors from '../../utils/colors';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import {CustomAlertModalStyle as styles} from '../../styles/components';
 
 const CustomAlertModal = ({ visible, title, message, onNoPress, onYesPress }) => {
   return (
@@ -24,49 +24,3 @@ const CustomAlertModal = ({ visible, title, message, onNoPress, onYesPress }) =>
 };
 
 export default CustomAlertModal;
-
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  contentContainer: {
-    backgroundColor: colors.linear2,
-    padding: 20,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '80%',
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: colors.primary,
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  message: {
-    fontSize: 16,
-    color: colors.text,
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    width: '100%',
-  },
-  button: {
-    paddingHorizontal: 20,
-  },
-  buttonText: {
-    fontSize: 16,
-    color: colors.text,
-    textAlign: 'center',
-  },
-  buttonYesText: {
-    color: colors.primary,
-  },
-});
