@@ -48,7 +48,7 @@ const ReportComponent = ({ icon, title, description, route, background }) => {
           <Text style={styles.description}>{description}</Text>
         </View>
         <View style={styles.arrowContainer}>
-          <Icon1 name="arrow-forward-ios" size={20} color={colors.primary} />
+          <Icon1 name="arrow-forward-ios" size={20} color={colors.plusButton} />
         </View>
       </View>
       <CustomAlertModal

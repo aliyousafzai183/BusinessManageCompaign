@@ -14,7 +14,12 @@ const ActivityComponent = ({id, price, date, paid, type }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-      navigation.navigate(RouteName.ADD_REPORT_SCREEN, {id : id, type : type});
+      if(type === 'Income'){
+        navigation.navigate(RouteName.INCOME_DETAIL_SCREEN, {id : id});
+      }else{
+        navigation.navigate(RouteName.EXPENSE_DETAL_SCREEN, {id : id});
+
+      }
   }
 
   const handleUpdate = () => {
@@ -54,7 +59,7 @@ const ActivityComponent = ({id, price, date, paid, type }) => {
   const iconType = type === 'Income' ? 'arrow-down' : 'arrow-up';
   
   return (
-    <TouchableOpacity onPress={handlePress} style={{width: '100%', }} disabled={true}>
+    <TouchableOpacity onPress={handlePress} style={{width: '100%', }}>
       <View style={styles.itemContainer}>
         <TouchableOpacity style={[styles.iconContainer, type === 'Income' && { backgroundColor: colors.success }]}>
           <Icon name={iconType} size={24} color={colors.background} />

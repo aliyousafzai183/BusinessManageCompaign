@@ -7,9 +7,9 @@ import colors from '../utils/colors';
 
 // screens
 import {
-    SplashScreen,
+    SplashScreen, IncomeDetailScreen,
     ContactUsScreen, FaqScreen,
-    ProfileScreen,
+    ProfileScreen, ExpenseDetailScreen,
     AddExpenseScreen, AddIncomeScreen,
     SecondSplashScreen, ProfitLossReportScreen
 } from '../screens/index';
@@ -37,6 +37,8 @@ const StackNavigation = () => {
                 <Stack.Screen name={RouteName.ADD_EXPENSE_SCREEN} component={AddExpenseScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.PROFILE_SCREEN} component={ProfileScreen}  options={{ headerTitle: 'Profile' }}/>
                 <Stack.Screen name={RouteName.PROFIT_LOSS_REPORT_SCREEN} component={ProfitLossReportScreen}  options={{ headerTitle: 'Profit & Loss Report' }}/>
+                <Stack.Screen name={RouteName.INCOME_DETAIL_SCREEN} component={IncomeDetailScreen}  options={{ headerTitle: 'Income' }}/>
+                <Stack.Screen name={RouteName.EXPENSE_DETAL_SCREEN} component={ExpenseDetailScreen}  options={{ headerTitle: 'Expense' }}/>
 
             </Stack.Navigator>
         </NavigationContainer>

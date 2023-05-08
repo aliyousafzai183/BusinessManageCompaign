@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     title: {
       fontWeight: 'bold',
       fontSize: 20,
-      color: colors.primary,
+      color: colors.plusButton,
       textAlign: 'center',
       marginBottom: 10,
     },
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
     buttonYesText: {
-      color: colors.primary,
+      color: colors.plusButton,
     },
   });
 

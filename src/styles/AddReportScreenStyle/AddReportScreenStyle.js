@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     sliderButtonLabel: {
       fontSize: 15,
       fontWeight: 'bold',
-      color: colors.primary,
+      color: colors.plusButton,
     },
     activeSliderButtonContainer: {
       backgroundColor: colors.plusButton,

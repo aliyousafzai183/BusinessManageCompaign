@@ -12,6 +12,8 @@ const RouteName = {
     MAIN_SCREEN: 'mainscreen',
     REPORT_LIST_SCREEN: 'reportlistscreen',
     PROFIT_LOSS_REPORT_SCREEN: 'profitlossreportscreen',
+    INCOME_DETAIL_SCREEN: 'incomedetailscreen',
+    EXPENSE_DETAL_SCREEN: 'expensedetailscreen',
 
     // authentication screens
     SPLASH_SCREEN: 'splashscreen',

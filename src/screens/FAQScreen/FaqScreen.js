@@ -41,8 +41,8 @@ const FaqScreen = ({navigation}) => {
       answer: 'Payroll is the amount of money the business pays to its employees for their work, including salaries, wages, and benefits.',
     },
     {
-      question: 'What is Retention?',
-      answer: 'Retention refers to the ability of the business to retain its customers or clients over time, and is typically measured as a percentage of the total number of customers or clients who continue to use the business\'s products or services.',
+      question: 'What is RDP?',
+      answer: 'Retention refers to the percentage of repeated products that a business is selling repeatedly',
     },
     {
       question: 'What is Inventory?',

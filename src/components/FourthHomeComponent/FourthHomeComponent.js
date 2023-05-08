@@ -5,7 +5,9 @@ import { FourthHomeComponentStyle as styles } from '../../styles/components';
 const FourthHomeComponent = ({ price, others }) => {
 
   const formatPrice = (price) => {
-    if (price >= 1000000) {
+    if (!price) {
+      return '-';
+    } else if (price >= 1000000) {
       return parseFloat((price / 1000000).toFixed(1)) + 'M';
     } else if (price >= 1000) {
       return parseFloat((price / 1000).toFixed(1)) + 'K';
@@ -14,11 +16,10 @@ const FourthHomeComponent = ({ price, others }) => {
     }
   }
 
-
   return (
     <View style={styles.container}>
       <View style={styles.rollContainer}>
-        <Text style={styles.price}>{formatPrice(price)}</Text>
+        <Text style={styles.price}>{formatPrice(others+price)}</Text>
         <Text style={styles.title}>Total</Text>
       </View>
 

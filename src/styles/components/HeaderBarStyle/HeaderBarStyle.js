@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     mainContainer: {
       height: 90,
-      backgroundColor: colors.primary,
+      backgroundColor: colors.plusButton,
       justifyContent: 'center',
       borderBottomWidth:1,
       borderColor:colors.text

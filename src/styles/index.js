@@ -11,3 +11,5 @@ export * from './ProfileScreenStyle';
 export * from './SplashScreenStyle';
 export * from './SecondSplashScreenStyle';
 export * from './components';
+export * from './IncomeDetailScreenStyle';
+export * from './ExpenseDetailScreenStyle';

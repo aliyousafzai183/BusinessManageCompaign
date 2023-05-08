@@ -30,13 +30,15 @@ const HomeScreeen = ({ navigation }) => {
     totalExpense: 0,
     grossProfit: 0,
     netProfit: 0,
-    retention: 0,
+    rdp: 0,
+    unp: 0,
     arpu: 0,
     cac: 0,
     aov: 0,
     totalReceivable: 0,
     totalPayable: 0,
-    payroll: 0,
+    payroll:0,
+    others: 0,
   });
 
   useFocusEffect(
@@ -81,14 +83,14 @@ const HomeScreeen = ({ navigation }) => {
   }, []);
 
   // Check if profile data exists
-const checkProfileData = async () => {
-  const profileData = await GetProfileData();
-  if (profileData) {
-    setProfileCompleted(true);
-  } else {
-    setProfileCompleted(false);
+  const checkProfileData = async () => {
+    const profileData = await GetProfileData();
+    if (profileData) {
+      setProfileCompleted(true);
+    } else {
+      setProfileCompleted(false);
+    }
   }
-}
 
 
   const handleProfileButton = () => {
@@ -97,34 +99,161 @@ const checkProfileData = async () => {
 
   // calculations
   useEffect(() => {
-    // calculations
-    // const totalRevenue = data.reduce((acc, item) => acc + item.totalIncome, 0);
-    // const totalExpense = data.reduce((acc, item) => acc + item.costOfSale, 0);
-    // const grossProfit = totalRevenue - totalExpense;
-    // const netProfit = grossProfit; // assuming payroll is another expense
-    // const retention = (new Set(data.map(item => item.previousCustomer)))
-    //   .size / data.length;
-    // const arpu = totalRevenue / data.length;
-    // const cac = totalExpense / data.length;
-    // const aov = totalRevenue / (data.reduce((acc, item) => acc + item.numberOfSales, 0) || 1);
-    // const totalReceivable = data.reduce((acc, item) => acc + item.accountsReceivable, 0);
-    // const totalPayable = data.reduce((acc, item) => acc + item.accountsPayable, 0);
-    // const payroll = data.reduce((acc, item) => acc + item.payroll, 0);
+    const totalRevenue = data.reduce((acc, item) => {
+      if (item.incomeReport) {
+        return acc + item.totalIncome;
+      } else {
+        return acc;
+      }
+    }, 0);
 
-    // setMetrics({
-    //   totalRevenue,
-    //   totalExpense,
-    //   grossProfit,
-    //   netProfit,
-    //   retention,
-    //   arpu,
-    //   cac,
-    //   aov,
-    //   totalReceivable,
-    //   totalPayable,
-    //   payroll
-    // });
-    console.log(data);
+
+    const totalExpense = data.reduce((acc, item) => {
+      if (!item.incomeReport) {
+        return acc + item.totalIncome;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const costOfSale = data.reduce((acc, item) => {
+      if (item.incomeReport) {
+        return acc + item.costOfSale;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const totalReceivable = data.reduce((acc, item) => {
+      if (item.incomeReport && !item.paid) {
+        return acc + item.totalIncome;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const totalPayable = data.reduce((acc, item) => {
+      if (!item.incomeReport && !item.paid) {
+        return acc + item.totalIncome;
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    const calculateRDP = () => {
+      const products = new Set();
+      let repeatedProducts = 0;
+
+      data.forEach((item) => {
+        if (item.incomeReport) {
+          if (!products.has(item.itemName)) {
+            products.add(item.itemName);
+          } else {
+            repeatedProducts++;
+          }
+        }
+      });
+
+      const totalProducts = products.size;
+      const RDP = totalProducts > 0 ? repeatedProducts / totalProducts : 0;
+
+      return RDP * 100;
+    }
+
+    const calculateUNP = () => {
+      const products = new Set();
+      let repeatedProducts = 0;
+    
+      data.forEach((item) => {
+        if (item.incomeReport) {
+          if (!products.has(item.itemName)) {
+            products.add(item.itemName);
+          } else {
+            repeatedProducts++;
+          }
+        }
+      });
+    
+      const totalProducts = products.size;
+      console.log(totalProducts);
+      console.log(repeatedProducts);
+      const UNP = totalProducts > 0 ? (totalProducts - repeatedProducts) / totalProducts : 0;
+    
+      return UNP * 100;
+    }
+    
+
+    const calculateARPU = () => {
+      const totalUsers = data.reduce((acc, item) => {
+        if (item.incomeReport) {
+          return acc + 1;
+        } else {
+          return acc;
+        }
+      }, 0);
+      return totalRevenue / totalUsers;
+    }
+
+    const calculateCAC = () => {
+      const totalUsers = data.reduce((acc, item) => {
+        if (item.incomeReport && item.previousCustomer === 0) {
+          return acc + 1;
+        } else {
+          return acc;
+        }
+      }, 0);
+
+      if (totalUsers > 0) {
+        return costOfSale / totalUsers;
+      } else {
+        return 0;
+      }
+    }
+
+    const calculateAOV = () => {
+      const totalOrders = data.filter(item => item.incomeReport).length;
+      if (totalOrders > 0) {
+        return totalRevenue / totalOrders;
+      } else {
+        return 0;
+      }
+    }
+    
+
+    const arpu = calculateARPU();
+
+    const grossProfit = totalRevenue - costOfSale;
+
+    const netProfit = grossProfit - totalExpense;
+
+    const payroll = totalExpense;
+
+    const others = costOfSale;
+
+    const rdp = calculateRDP();
+
+    const unp = calculateUNP();
+    console.log("unp "+unp);
+
+    const cac = calculateCAC();
+
+    const aov = calculateAOV();
+
+    setMetrics({
+      totalRevenue,
+      totalExpense,
+      grossProfit,
+      netProfit,
+      rdp,
+      unp,
+      arpu,
+      cac,
+      aov,
+      totalReceivable,
+      totalPayable,
+      payroll,
+      others
+    });
   }, [data]);
 
   return (
@@ -153,25 +282,25 @@ const checkProfileData = async () => {
           <HomeBoxComponent
             icon="wallet"
             title="Total Revenue"
-            price={0}
+            price={metrics.totalRevenue}
             color='#26A69A'
           />
           <HomeBoxComponent
             icon="wallet"
             title="Total Expense"
-            price={0}
+            price={metrics.totalExpense}
             color='#FF7043'
           />
           <HomeBoxComponent
             icon="file-invoice-dollar"
             title="Gross Profit"
-            price={0}
+            price={metrics.grossProfit}
             color='#8BC34A'
           />
           <HomeBoxComponent
             icon="money-bill-alt"
             title="Net Profit"
-            price={0}
+            price={metrics.netProfit}
             color='#FFCA28'
           />
         </View>
@@ -188,32 +317,32 @@ const checkProfileData = async () => {
             <View style={styles.analyticsWrapper}>
               <AnalyticComponent
                 icon="chart-line"
-                title="Retention"
-                value={0}
+                title="RDP"
+                value={metrics.rdp}
                 color="#2196F3"
               />
               <AnalyticComponent
                 icon="box-open"
-                title="Position"
-                value={0}
+                title="UNP"
+                value={metrics.unp}
                 color="#4CAF50"
               />
               <AnalyticComponent
                 icon="dollar-sign"
                 title="ARPU"
-                value={0}
+                value={metrics.arpu}
                 color="#FF9800"
               />
               <AnalyticComponent
                 icon="users"
                 title="CAC"
-                value={0}
+                value={metrics.cac}
                 color="#E91E63"
               />
               <AnalyticComponent
                 icon="chart-bar"
                 title="AOV"
-                value={0}
+                value={metrics.aov}
                 color="#9C27B0"
               />
             </View>
@@ -226,21 +355,21 @@ const checkProfileData = async () => {
             <ThirdHomeScreenComponent
               icon="hand-holding-usd"
               title="Total Receivable"
-              price={0}
+              price={metrics.totalReceivable}
               color='#008CBA'
             />
             <ThirdHomeScreenComponent
               icon="money-bill-wave"
               title="Total Payable"
-              price={0}
+              price={metrics.totalPayable}
               color='#FF7043'
             />
 
           </View>
           <View style={styles.innerWrapper}>
             <FourthHomeComponent
-              price={0}
-              others={0}
+              price={metrics.payroll}
+              others={metrics.others}
             />
           </View>
           <View>

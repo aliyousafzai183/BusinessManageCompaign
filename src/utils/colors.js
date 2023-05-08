@@ -1,6 +1,6 @@
 const colors = {
     // primary: '#7F5DF0',
-    primary: '#0A06F1',
+    plusButton: '#0A06F1',
     helpColor: '#0A06F1',
     background: '#ffff',
     text:'#333333',

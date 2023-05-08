@@ -1,0 +1,1 @@
+export {default as IncomeDetailScreen} from './IncomeDetailScreen';

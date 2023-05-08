@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
   
     label: {
-      color: colors.primary,
+      color: colors.plusButton,
       fontSize: 15
     }
   });
