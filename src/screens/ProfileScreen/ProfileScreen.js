@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, BackHandler } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, BackHandler, Keyboard } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
 import LinearGradient from 'react-native-linear-gradient';
@@ -61,6 +61,11 @@ const ProfileScreen = ({navigation}) => {
     };
   }, []);
 
+  const handleDone = () => {
+    // dismiss keyboard
+    Keyboard.dismiss();
+  }
+
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>
       <ScrollView style={styles.contentContainer} showsHorizontalScrollIndicator={false}>
@@ -95,6 +100,8 @@ const ProfileScreen = ({navigation}) => {
             editable={isEditing}
             onFocus={() => setBusinessNameFocused(true)}
             onBlur={() => setBusinessNameFocused(false)}
+            onSubmitEditing={handleDone} // called when done button is pressed
+            returnKeyType="done" // set return key type to done
           />
 
           {
@@ -123,6 +130,8 @@ const ProfileScreen = ({navigation}) => {
             editable={isEditing}
             onFocus={() => setFounderNameFocused(true)}
             onBlur={() => setFounderNameFocused(false)}
+            onSubmitEditing={handleDone} // called when done button is pressed
+            returnKeyType="done" // set return key type to done
           />
 
           {
@@ -152,6 +161,8 @@ const ProfileScreen = ({navigation}) => {
             editable={isEditing}
             onFocus={() => setPhoneNumberFocused(true)}
             onBlur={() => setPhoneNumberFocused(false)}
+            onSubmitEditing={handleDone} // called when done button is pressed
+            returnKeyType="done" // set return key type to done
           />
 
           {
@@ -180,6 +191,8 @@ const ProfileScreen = ({navigation}) => {
             editable={isEditing}
             onFocus={() => setEmailFocused(true)}
             onBlur={() => setEmailFocused(false)}
+            onSubmitEditing={handleDone} // called when done button is pressed
+            returnKeyType="done" // set return key type to done
           />
 
           {
@@ -208,6 +221,8 @@ const ProfileScreen = ({navigation}) => {
             editable={isEditing}
             onFocus={() => setCurrencyFocused(true)}
             onBlur={() => setCurrencyFocused(false)}
+            onSubmitEditing={handleDone} // called when done button is pressed
+            returnKeyType="done" // set return key type to done
           />
 
           <TouchableOpacity onPress={handleSave} style={styles.header}>

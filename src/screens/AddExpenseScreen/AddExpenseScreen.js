@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ToastAndroid } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Keyboard, ScrollView, ToastAndroid } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import colors from '../../utils/colors';
 import { RadioButton } from '../../components';
@@ -20,6 +20,10 @@ const AddExpenseScreen = ({ navigation }) => {
   const [totalExpenseFocused, setTotalExpenseFocused] = useState(false);
   const [reasonFocused, setReasonFocused] = useState(false);
 
+  const handleDone = () => {
+    // dismiss keyboard
+    Keyboard.dismiss();
+  }
 
   const handleDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -103,6 +107,8 @@ const AddExpenseScreen = ({ navigation }) => {
         onChangeText={setVendorName}
         onFocus={() => setVendorNameFocused(true)}
         onBlur={() => setVendorNameFocused(false)}
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       {
@@ -130,6 +136,8 @@ const AddExpenseScreen = ({ navigation }) => {
         onFocus={() => setTotalExpenseFocused(true)}
         onBlur={() => setTotalExpenseFocused(false)}
         keyboardType='numeric'
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       {
@@ -156,6 +164,8 @@ const AddExpenseScreen = ({ navigation }) => {
         onChangeText={setReason}
         onFocus={() => setReasonFocused(true)}
         onBlur={() => setReasonFocused(false)}
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       <View style={styles.radioContainer}>

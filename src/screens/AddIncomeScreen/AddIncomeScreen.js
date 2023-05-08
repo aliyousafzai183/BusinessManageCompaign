@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ToastAndroid, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ToastAndroid, ScrollView, Keyboard } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import colors from '../../utils/colors';
 import { RadioButton } from '../../components';
@@ -32,6 +32,11 @@ const AddIncomeScreen = ({ navigation }) => {
     setShowDatePicker(false);
     setDate(currentDate);
   };
+
+  const handleDone = () => {
+    // dismiss keyboard
+    Keyboard.dismiss();
+  }
 
   const handleCancel = () => {
     setShowDatePicker(false);
@@ -115,6 +120,8 @@ const AddIncomeScreen = ({ navigation }) => {
         onChangeText={setOrdersReceived}
         onFocus={() => setOrdersReceivedFocused(true)}
         onBlur={() => setOrdersReceivedFocused(false)}
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       {
@@ -141,6 +148,8 @@ const AddIncomeScreen = ({ navigation }) => {
         onChangeText={setItemName}
         onFocus={() => setItemNameFocused(true)}
         onBlur={() => setItemNameFocused(false)}
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       {
@@ -168,6 +177,8 @@ const AddIncomeScreen = ({ navigation }) => {
         onChangeText={setRepeatOrders}
         onFocus={() => setRepeatOrdersFocused(true)}
         onBlur={() => setRepeatOrdersFocused(false)}
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       {
@@ -195,6 +206,8 @@ const AddIncomeScreen = ({ navigation }) => {
         onChangeText={setTotalIncome}
         onFocus={() => setTotalIncomeFocused(true)}
         onBlur={() => setTotalIncomeFocused(false)}
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       {
@@ -223,6 +236,8 @@ const AddIncomeScreen = ({ navigation }) => {
           onChangeText={setCostOfSale}
           onFocus={() => setCostOfSaleFocused(true)}
           onBlur={() => setCostOfSaleFocused(false)}
+          onSubmitEditing={handleDone} // called when done button is pressed
+          returnKeyType="done" // set return key type to done
         />
 
         <TouchableOpacity onPress={() => {
@@ -257,6 +272,8 @@ const AddIncomeScreen = ({ navigation }) => {
         onChangeText={setDescription}
         onFocus={() => setDescriptionFocused(true)}
         onBlur={() => setDescriptionFocused(false)}
+        onSubmitEditing={handleDone} // called when done button is pressed
+        returnKeyType="done" // set return key type to done
       />
 
       <View style={styles.radioContainer}>
