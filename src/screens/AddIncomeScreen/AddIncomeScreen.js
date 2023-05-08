@@ -10,11 +10,11 @@ import db from '../../db/data/db';
 const AddIncomeScreen = ({ navigation }) => {
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [ordersReceived, setOrdersReceived] = useState('');
+  const [ordersReceived, setOrdersReceived] = useState();
   const [itemName, setItemName] = useState('');
-  const [repeatOrders, setRepeatOrders] = useState('');
-  const [totalIncome, setTotalIncome] = useState('');
-  const [costOfSale, setCostOfSale] = useState('');
+  const [repeatOrders, setRepeatOrders] = useState();
+  const [totalIncome, setTotalIncome] = useState();
+  const [costOfSale, setCostOfSale] = useState();
   const [description, setDescription] = useState('');
   const [received, setReceived] = useState(true);
 
@@ -42,11 +42,11 @@ const AddIncomeScreen = ({ navigation }) => {
       ToastAndroid.show("Please fill necessary fields", ToastAndroid.LONG);
       return;
     }
-    setOrdersReceived('');
+    setOrdersReceived();
     setItemName('');
-    setRepeatOrders('');
-    setTotalIncome('');
-    setCostOfSale('');
+    setRepeatOrders();
+    setTotalIncome();
+    setCostOfSale();
     setDescription('');
     setReceived(true);
 

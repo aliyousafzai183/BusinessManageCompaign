@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ToastAndroid } from "react-native";
 
-const GetData = async () => {
+const GetProfileData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('profileData');
     return jsonValue != null ? JSON.parse(jsonValue) : null;
@@ -10,4 +10,4 @@ const GetData = async () => {
   }
 };
 
-export default GetData;
+export default GetProfileData;

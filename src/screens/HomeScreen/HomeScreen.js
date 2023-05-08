@@ -10,6 +10,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { HomeScreenStyle as styles } from '../../styles/index';
 
 import GetData from '../../db/data/GetData';
+import GetProfileData from '../../db/profile/GetProfileData';
 import { useFocusEffect } from '@react-navigation/native';
 
 // component
@@ -42,6 +43,7 @@ const HomeScreeen = ({ navigation }) => {
     React.useCallback(() => {
       GetData().then(reports => {
         setData(reports);
+        checkProfileData();
       }).catch(error => {
         console.log(error);
       });
@@ -78,6 +80,16 @@ const HomeScreeen = ({ navigation }) => {
     };
   }, []);
 
+  // Check if profile data exists
+const checkProfileData = async () => {
+  const profileData = await GetProfileData();
+  if (profileData) {
+    setProfileCompleted(true);
+  } else {
+    setProfileCompleted(false);
+  }
+}
+
 
   const handleProfileButton = () => {
     navigation.navigate(RouteName.PROFILE_SCREEN);
@@ -86,32 +98,33 @@ const HomeScreeen = ({ navigation }) => {
   // calculations
   useEffect(() => {
     // calculations
-    const totalRevenue = data.reduce((acc, item) => acc + item.totalIncome, 0);
-    const totalExpense = data.reduce((acc, item) => acc + item.costOfSale, 0);
-    const grossProfit = totalRevenue - totalExpense;
-    const netProfit = grossProfit; // assuming payroll is another expense
-    const retention = (new Set(data.map(item => item.previousCustomer)))
-      .size / data.length;
-    const arpu = totalRevenue / data.length;
-    const cac = totalExpense / data.length;
-    const aov = totalRevenue / (data.reduce((acc, item) => acc + item.numberOfSales, 0) || 1);
-    const totalReceivable = data.reduce((acc, item) => acc + item.accountsReceivable, 0);
-    const totalPayable = data.reduce((acc, item) => acc + item.accountsPayable, 0);
-    const payroll = data.reduce((acc, item) => acc + item.payroll, 0);
+    // const totalRevenue = data.reduce((acc, item) => acc + item.totalIncome, 0);
+    // const totalExpense = data.reduce((acc, item) => acc + item.costOfSale, 0);
+    // const grossProfit = totalRevenue - totalExpense;
+    // const netProfit = grossProfit; // assuming payroll is another expense
+    // const retention = (new Set(data.map(item => item.previousCustomer)))
+    //   .size / data.length;
+    // const arpu = totalRevenue / data.length;
+    // const cac = totalExpense / data.length;
+    // const aov = totalRevenue / (data.reduce((acc, item) => acc + item.numberOfSales, 0) || 1);
+    // const totalReceivable = data.reduce((acc, item) => acc + item.accountsReceivable, 0);
+    // const totalPayable = data.reduce((acc, item) => acc + item.accountsPayable, 0);
+    // const payroll = data.reduce((acc, item) => acc + item.payroll, 0);
 
-    setMetrics({
-      totalRevenue,
-      totalExpense,
-      grossProfit,
-      netProfit,
-      retention,
-      arpu,
-      cac,
-      aov,
-      totalReceivable,
-      totalPayable,
-      payroll
-    });
+    // setMetrics({
+    //   totalRevenue,
+    //   totalExpense,
+    //   grossProfit,
+    //   netProfit,
+    //   retention,
+    //   arpu,
+    //   cac,
+    //   aov,
+    //   totalReceivable,
+    //   totalPayable,
+    //   payroll
+    // });
+    console.log(data);
   }, [data]);
 
   return (

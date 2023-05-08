@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 import { ProfileScreenStyle as styles } from '../../styles/index';
 import SetData from '../../db/profile/SetData';
-import GetData from '../../db/profile/GetData';
+import GetProfileData from '../../db/profile/GetProfileData';
 
 const ProfileScreen = ({navigation}) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -33,7 +33,7 @@ const ProfileScreen = ({navigation}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await GetData();
+      const data = await GetProfileData();
       if (data != null) {
         setBusinessName(data.businessName);
         setFounderName(data.founderName);
@@ -138,6 +138,7 @@ const ProfileScreen = ({navigation}) => {
               phoneNumberFocused && { borderColor: colors.primary },
               { color: isEditing ? colors.text : colors.label }
             ]}
+            keyboardType='numeric'
             placeholderTextColor={colors.label}
             placeholder={
               phoneNumberFocused

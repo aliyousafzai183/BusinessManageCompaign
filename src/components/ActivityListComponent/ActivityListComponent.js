@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../utils/colors';
 import RouteName from '../../routes/RouteName';
 import {ActivityListComponentStyle as styles} from '../../styles/components';
-import GetData from '../../db/profile/GetData';
+import GetProfileData from '../../db/profile/GetProfileData';
 import db from '../../db/data/db';
 
 const ActivityComponent = ({id, price, date, paid, type }) => {
@@ -39,7 +39,7 @@ const ActivityComponent = ({id, price, date, paid, type }) => {
   
 
   const fetchData = async () => {
-    const data = await GetData();
+    const data = await GetProfileData();
     if (data != null) {
       setCurrency(data.currency);
     }

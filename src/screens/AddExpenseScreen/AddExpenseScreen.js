@@ -11,7 +11,7 @@ const AddExpenseScreen = ({ navigation }) => {
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [vendorName, setVendorName] = useState('');
-  const [totalExpense, setTotalExpense] = useState('');
+  const [totalExpense, setTotalExpense] = useState();
   const [reason, setReason] = useState('');
   const [paid, setPaid] = useState(true);
 
@@ -40,7 +40,7 @@ const AddExpenseScreen = ({ navigation }) => {
       db.transaction(tx => {
         tx.executeSql(
           'INSERT INTO reports (incomeReport, vendorName, description, paid, date, ordersReceived, itemName, previousCustomer, totalIncome, costOfSale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-          [false, vendorName, reason, paid, date.toLocaleDateString(), '0', 'Ali', '2', totalExpense, '0'],
+          [false, vendorName, reason, paid, date.toLocaleDateString(), 0, 'Ali', 0, totalExpense, 0],
           () => {
             ToastAndroid.show("Added Report", ToastAndroid.LONG);
             navigation.navigate(RouteName.ACTIVITY_SCREEN);
@@ -49,7 +49,7 @@ const AddExpenseScreen = ({ navigation }) => {
         );
       });
       setVendorName('');
-      setTotalExpense('');
+      setTotalExpense();
       setReason('');
     } catch (error) {
       console.log('Error: ', error);

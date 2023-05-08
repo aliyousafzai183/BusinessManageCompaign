@@ -10,10 +10,10 @@ const db = SQLite.openDatabase(
 );
 
 db.executeSql(
-    'CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY AUTOINCREMENT,incomeReport BOOLEAN, vendorName TEXT,  description TEXT, paid BOOLEAN, date TEXT, ordersReceived TEXT, itemName TEXT, previousCustomer TEXT, totalIncome TEXT, costOfSale TEXT)',
+    'CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY AUTOINCREMENT, incomeReport BOOLEAN, vendorName TEXT, description TEXT, paid BOOLEAN, date TEXT, ordersReceived INTEGER, itemName TEXT, previousCustomer INTEGER, totalIncome INTEGER, costOfSale INTEGER)',
     [],
     () => console.log('Table created'),
     error => console.log('Error creating table: ', error)
-);
+  );
 
 export default db;
