@@ -17,6 +17,7 @@ const getReports = () => {
           resolve(reports);
         },
         (error) => {
+          console.log(error);
           reject(error);
         },
       );

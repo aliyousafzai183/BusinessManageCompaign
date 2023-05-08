@@ -1,9 +1,25 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, BackHandler } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 
-const ProfitLossReportScreen = () => {
+const ProfitLossReportScreen = ({ navigation }) => {
+
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => {
+      if (backHandler) {
+        backHandler.remove();
+      }
+    };
+  }, []);
+
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
       <View style={styles.invoice}>

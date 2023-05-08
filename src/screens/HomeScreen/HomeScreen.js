@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Dimensions, BackHandler, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, BackHandler, Alert } from 'react-native';
 
 // styles
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
@@ -18,8 +18,6 @@ import {
   ThirdHomeScreenComponent, FourthHomeComponent
 } from '../../components/index';
 import RouteName from '../../routes/RouteName';
-
-const { width, height } = Dimensions.get('window');
 
 const HomeScreeen = ({ navigation }) => {
   const [showMetrics, setShowMetrics] = useState(false);
@@ -52,17 +50,22 @@ const HomeScreeen = ({ navigation }) => {
 
   useEffect(() => {
     const backAction = () => {
-      Alert.alert('Exit App', 'Are you sure you want to exit?', [
-        {
-          text: 'No',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {
-          text: 'Yes',
-          onPress: () => BackHandler.exitApp(),
-        },
-      ]);
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+      } else {
+        Alert.alert('Exit App', 'Are you sure you want to exit?', [
+          {
+            text: 'No',
+            onPress: () => null,
+            style: 'cancel',
+          },
+          {
+            text: 'Yes',
+            onPress: () => BackHandler.exitApp(),
+          },
+        ]);
+      }
+
       return true;
     };
 
@@ -111,8 +114,6 @@ const HomeScreeen = ({ navigation }) => {
     });
   }, [data]);
 
-  console.log(metrics);
-
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>
       {
@@ -139,25 +140,25 @@ const HomeScreeen = ({ navigation }) => {
           <HomeBoxComponent
             icon="wallet"
             title="Total Revenue"
-            price={metrics.totalRevenue}
+            price={0}
             color='#26A69A'
           />
           <HomeBoxComponent
             icon="wallet"
             title="Total Expense"
-            price={metrics.totalExpense}
+            price={0}
             color='#FF7043'
           />
           <HomeBoxComponent
             icon="file-invoice-dollar"
             title="Gross Profit"
-            price={metrics.grossProfit}
+            price={0}
             color='#8BC34A'
           />
           <HomeBoxComponent
             icon="money-bill-alt"
             title="Net Profit"
-            price={metrics.netProfit}
+            price={0}
             color='#FFCA28'
           />
         </View>
@@ -175,31 +176,31 @@ const HomeScreeen = ({ navigation }) => {
               <AnalyticComponent
                 icon="chart-line"
                 title="Retention"
-                value={metrics.retention}
+                value={0}
                 color="#2196F3"
               />
               <AnalyticComponent
                 icon="box-open"
                 title="Position"
-                value={metrics.retention}
+                value={0}
                 color="#4CAF50"
               />
               <AnalyticComponent
                 icon="dollar-sign"
                 title="ARPU"
-                value={metrics.arpu}
+                value={0}
                 color="#FF9800"
               />
               <AnalyticComponent
                 icon="users"
                 title="CAC"
-                value={metrics.cac}
+                value={0}
                 color="#E91E63"
               />
               <AnalyticComponent
                 icon="chart-bar"
                 title="AOV"
-                value={metrics.aov}
+                value={0}
                 color="#9C27B0"
               />
             </View>
@@ -212,21 +213,21 @@ const HomeScreeen = ({ navigation }) => {
             <ThirdHomeScreenComponent
               icon="hand-holding-usd"
               title="Total Receivable"
-              price={metrics.totalReceivable}
+              price={0}
               color='#008CBA'
             />
             <ThirdHomeScreenComponent
               icon="money-bill-wave"
               title="Total Payable"
-              price={metrics.totalPayable}
+              price={0}
               color='#FF7043'
             />
 
           </View>
           <View style={styles.innerWrapper}>
             <FourthHomeComponent
-              price={metrics.grossProfit}
-              others={metrics.netProfit}
+              price={0}
+              others={0}
             />
           </View>
           <View>

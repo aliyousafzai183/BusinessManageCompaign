@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, BackHandler } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,7 +8,7 @@ import { ProfileScreenStyle as styles } from '../../styles/index';
 import SetData from '../../db/profile/SetData';
 import GetData from '../../db/profile/GetData';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [businessName, setBusinessName] = useState('');
   const [founderName, setFounderName] = useState('');
@@ -45,6 +45,21 @@ const ProfileScreen = () => {
 
     fetchData();
   }, [isEditing]);
+
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => {
+      if (backHandler) {
+        backHandler.remove();
+      }
+    };
+  }, []);
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>

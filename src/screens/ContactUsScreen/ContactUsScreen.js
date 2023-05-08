@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Linking, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Linking, ScrollView, BackHandler } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -8,9 +8,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
-import {ContactUsScreenStyle as styles} from '../../styles/index';
+import { ContactUsScreenStyle as styles } from '../../styles/index';
 
-const ContactUsScreen = () => {
+const ContactUsScreen = ({ navigation }) => {
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
   const [formFilled, setFormFilled] = useState(false);
@@ -24,6 +24,21 @@ const ContactUsScreen = () => {
     }
   }, [subject, body]);
 
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => {
+      if (backHandler) {
+        backHandler.remove();
+      }
+    };
+  }, []);
+
   const handleEmailSubmit = () => {
     if (formFilled) {
       const email = `mailto:codinglabs183@gmail.com?subject=${subject}&body=${body}`;
@@ -36,7 +51,7 @@ const ContactUsScreen = () => {
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>
       <ScrollView style={styles.container} showsHorizontalScrollIndicator={false}>
-      <Text style={styles.heading}>We love hearing from you! Reach out anytime</Text>
+        <Text style={styles.heading}>We love hearing from you! Reach out anytime</Text>
         <View style={styles.inputContainer}>
           <Entypo name="email" size={24} color={colors.plusButton} />
           <TextInput
@@ -64,7 +79,7 @@ const ContactUsScreen = () => {
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={handleEmailSubmit}
-          // disabled={!formFilled}
+        // disabled={!formFilled}
         >
           <Text style={styles.buttonText}>Submit</Text>
           <AntDesign name="arrowright" size={24} color={colors.background} />

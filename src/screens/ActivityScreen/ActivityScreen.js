@@ -7,6 +7,7 @@ import { ActivityListComponent } from '../../components/index';
 import { useRoute, useFocusEffect } from '@react-navigation/native';
 import { ActivityScreenStyle as styles } from '../../styles/index';
 import GetData from '../../db/data/GetData';
+import { ToastAndroid } from 'react-native';
 
 const ActivityScreen = () => {
 
@@ -52,7 +53,7 @@ const ActivityScreen = () => {
       GetData().then(reports => {
         setData(reports);
       }).catch(error => {
-        console.log(error);
+        ToastAndroid.show("No Report Found! \n Add a Report",ToastAndroid.SHORT)
       });
     }, [])
   );

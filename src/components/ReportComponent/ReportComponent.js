@@ -8,6 +8,7 @@ import RouteName from '../../routes/RouteName';
 import {CustomAlertModal} from '../index';
 import {ReportComponentStyle as styles} from '../../styles/components';
 import DeleteData from '../../db/profile/DeleteData';
+import deleteTable from '../../db/data/deleteTable';
 
 const ReportComponent = ({ icon, title, description, route, background }) => {
   const navigation = useNavigation();
@@ -19,6 +20,7 @@ const ReportComponent = ({ icon, title, description, route, background }) => {
 
   const handleLogoutConfirm = () => {
     DeleteData();
+    deleteTable();
     navigation.navigate(RouteName.HOME_SCREEN);
     setModalVisible(false);
   };
