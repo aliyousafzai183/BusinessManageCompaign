@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, BackHandler, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 import GetData from '../../db/data/GetData';
@@ -216,7 +216,7 @@ const ProfitLossReportScreen = ({ navigation }) => {
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
-      <View style={styles.invoice}>
+      <ScrollView style={styles.invoice}>
         <Text style={styles.invoiceTitle}>REPORT</Text>
         <View style={styles.borderTop}></View>
         <View style={styles.row}>
@@ -263,7 +263,9 @@ const ProfitLossReportScreen = ({ navigation }) => {
           <Text style={styles.label}>Net Profit:</Text>
           <Text style={styles.value}>{metrics.netProfit} {currency}</Text>
         </View>
-      </View>
+        <View style={styles.borderBottom}></View>
+        <View style={{marginBottom:'15%'}}></View>
+      </ScrollView>
     </LinearGradient>
   )
 }

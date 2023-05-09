@@ -47,9 +47,13 @@ function BottomNavigation() {
           borderRadius: 15,
           height: 70,
           ...styles.shadow
+        },
+        tabBarIconStyle: {
+          minWidth: 60, // set a minimum width for the icons
         }
       }}
     >
+
       <Tab.Screen
         name={RouteName.HOME_SCREEN}
         component={HomeScreen}
@@ -88,7 +92,8 @@ function BottomNavigation() {
           tabBarButton: (props) => (
             <CustomTabBarButton {...props} />
           ),
-          header: () => <HeaderBar title="Add Report" />        }}
+          header: () => <HeaderBar title="Add Report" />
+        }}
       />
 
       <Tab.Screen
@@ -137,7 +142,7 @@ const styles = StyleSheet.create({
   },
 
   iconContainer: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   plusButton: {

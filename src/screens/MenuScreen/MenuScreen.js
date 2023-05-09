@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ToastAndroid } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 import RouteName from '../../routes/RouteName';
@@ -10,6 +10,7 @@ const MenuScreen = () => {
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
+      <ScrollView>
       <ReportComponent
         icon="account-circle"
         title="Profile"
@@ -38,6 +39,8 @@ const MenuScreen = () => {
         route={RouteName.LOGOUT_SCREEN}
         background={colors.failure}
       />
+      <View style={{marginBottom:'15%'}}></View>
+      </ScrollView>
     </LinearGradient>
   );
 };

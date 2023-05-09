@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 import RouteName from '../../routes/RouteName';
@@ -8,6 +8,7 @@ import { ReportComponent } from '../../components/index';
 const ReportListScreen = () => {
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
+      <ScrollView>
       <ReportComponent
         icon="chart-pie"
         title="Profit & Loss Report"
@@ -29,6 +30,8 @@ const ReportListScreen = () => {
         route={RouteName.ACTIVITY_SCREEN}
         background="#DC3545"
       />
+      <View style={{paddingTop:'15%'}}></View>
+      </ScrollView>
     </LinearGradient>
   );
 };

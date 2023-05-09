@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
       backgroundColor:colors.linear1,
       borderRadius:10,
       paddingVertical:'4%',
-      paddingHorizontal:'8%',
       width:width/2.5,
       marginLeft:width/30,
       marginBottom:width/20,

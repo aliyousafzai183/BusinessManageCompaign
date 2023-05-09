@@ -45,7 +45,6 @@ const HomeScreeen = ({ navigation }) => {
     React.useCallback(() => {
       GetData().then(reports => {
         setData(reports);
-        checkProfileData();
       }).catch(error => {
         setMetrics({
           totalRevenue: 0,
@@ -64,6 +63,7 @@ const HomeScreeen = ({ navigation }) => {
         });
         console.log(error);
       });
+      checkProfileData();
     }, [])
   );
 
