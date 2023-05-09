@@ -41,6 +41,14 @@ const AddExpenseScreen = ({ navigation }) => {
       return;
     }
     try {
+
+      db.executeSql(
+        'CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY AUTOINCREMENT, incomeReport BOOLEAN, vendorName TEXT, description TEXT, paid BOOLEAN, date TEXT, ordersReceived INTEGER, itemName TEXT, previousCustomer INTEGER, totalIncome INTEGER, costOfSale INTEGER)',
+        [],
+        () => console.log('Table created'),
+        error => console.log('Error creating table: ', error)
+      );
+      
       db.transaction(tx => {
         tx.executeSql(
           'INSERT INTO reports (incomeReport, vendorName, description, paid, date, ordersReceived, itemName, previousCustomer, totalIncome, costOfSale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -49,14 +57,14 @@ const AddExpenseScreen = ({ navigation }) => {
             ToastAndroid.show("Added Report", ToastAndroid.LONG);
             navigation.navigate(RouteName.ACTIVITY_SCREEN);
           },
-          error => ToastAndroid.show("Error Adding Report", ToastAndroid.LONG)
+          error => console.log((error))
         );
       });
       setVendorName('');
       setTotalExpense();
       setReason('');
     } catch (error) {
-      console.log('Error: ', error);
+      ToastAndroid.show("Error Adding Report", ToastAndroid.LONG);
     }
   };
   

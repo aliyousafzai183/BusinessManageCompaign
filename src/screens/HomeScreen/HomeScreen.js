@@ -37,7 +37,7 @@ const HomeScreeen = ({ navigation }) => {
     aov: 0,
     totalReceivable: 0,
     totalPayable: 0,
-    payroll:0,
+    payroll: 0,
     others: 0,
   });
 
@@ -47,10 +47,26 @@ const HomeScreeen = ({ navigation }) => {
         setData(reports);
         checkProfileData();
       }).catch(error => {
+        setMetrics({
+          totalRevenue: 0,
+          totalExpense: 0,
+          grossProfit: 0,
+          netProfit: 0,
+          rdp: 0,
+          unp: 0,
+          arpu: 0,
+          cac: 0,
+          aov: 0,
+          totalReceivable: 0,
+          totalPayable: 0,
+          payroll: 0,
+          others: 0,
+        });
         console.log(error);
       });
     }, [])
   );
+
 
   useEffect(() => {
     const backAction = () => {
@@ -163,7 +179,7 @@ const HomeScreeen = ({ navigation }) => {
     const calculateUNP = () => {
       const products = new Set();
       let repeatedProducts = 0;
-    
+
       data.forEach((item) => {
         if (item.incomeReport) {
           if (!products.has(item.itemName)) {
@@ -173,15 +189,13 @@ const HomeScreeen = ({ navigation }) => {
           }
         }
       });
-    
+
       const totalProducts = products.size;
-      console.log(totalProducts);
-      console.log(repeatedProducts);
       const UNP = totalProducts > 0 ? (totalProducts - repeatedProducts) / totalProducts : 0;
-    
+
       return UNP * 100;
     }
-    
+
 
     const calculateARPU = () => {
       const totalUsers = data.reduce((acc, item) => {
@@ -218,7 +232,7 @@ const HomeScreeen = ({ navigation }) => {
         return 0;
       }
     }
-    
+
 
     const arpu = calculateARPU();
 
@@ -233,7 +247,6 @@ const HomeScreeen = ({ navigation }) => {
     const rdp = calculateRDP();
 
     const unp = calculateUNP();
-    console.log("unp "+unp);
 
     const cac = calculateCAC();
 

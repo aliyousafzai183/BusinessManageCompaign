@@ -42,18 +42,19 @@ const ActivityScreen = () => {
     closeModal();
   };
 
-  const filteredData = data.filter(entry => 
-    filtered === "All Reports" || 
-    (entry.incomeReport && filtered === "Income") || 
+  const filteredData = data.filter(entry =>
+    filtered === "All Reports" ||
+    (entry.incomeReport && filtered === "Income") ||
     (!entry.incomeReport && filtered === "Expense")
   );
-  
+
   useFocusEffect(
     React.useCallback(() => {
       GetData().then(reports => {
         setData(reports);
       }).catch(error => {
-        ToastAndroid.show("No Report Found! \n Add a Report",ToastAndroid.SHORT)
+        ToastAndroid.show("No Report Found! \n Add a Report", ToastAndroid.SHORT);
+        setData([]);
       });
     }, [])
   );
@@ -91,7 +92,7 @@ const ActivityScreen = () => {
             type={entry.incomeReport ? "Income" : "Expense"}
           />
         ))}
-        <View style={{marginBottom:'50%'}}></View>
+        <View style={{ marginBottom: '50%' }}></View>
       </ScrollView>
 
       <Modal
