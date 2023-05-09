@@ -29,6 +29,8 @@ const ActivityScreen = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [searchValue, setSearchValue] = useState('');
+
   const openModal = () => {
     setModalVisible(true);
   };
@@ -46,7 +48,14 @@ const ActivityScreen = () => {
     filtered === "All Reports" ||
     (entry.incomeReport && filtered === "Income") ||
     (!entry.incomeReport && filtered === "Expense")
+  ).filter(entry =>
+    entry.totalIncome.toString().includes(searchValue)
   );
+
+  const handleDisplayAll = () => {
+    handleFilter("All Reports");
+    setSearchValue('');
+  }
 
   useFocusEffect(
     React.useCallback(() => {
@@ -64,7 +73,6 @@ const ActivityScreen = () => {
     setFiltered(newFiltered);
   }, [title]);
 
-
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
       <View style={styles.topContainer}>
@@ -74,6 +82,8 @@ const ActivityScreen = () => {
             style={styles.textInput}
             placeholder="Search"
             placeholderTextColor={colors.background}
+            onChangeText={(value) => setSearchValue(value)}
+            value={searchValue}
           />
         </View>
         <TouchableOpacity style={styles.filterButton} onPress={openModal}>
@@ -105,7 +115,7 @@ const ActivityScreen = () => {
           onPress={() => setModalVisible(false)}
         >
           <View style={styles.modalView}>
-            <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("All Reports")}>
+            <TouchableOpacity style={styles.modalButton} onPress={handleDisplayAll}>
               <Text style={styles.modalButtonText}>All Reports</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.modalButton} onPress={() => handleFilter("Income")}>
