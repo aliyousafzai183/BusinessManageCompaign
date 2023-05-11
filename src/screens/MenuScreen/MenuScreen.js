@@ -19,6 +19,13 @@ const MenuScreen = () => {
         background={colors.plusButton}
         />
       <ReportComponent
+        icon="clipboard-check-multiple"
+        title="Business Tips"
+        description="Read tips that to enhance business"
+        route={RouteName.TIPS_SCREEN}
+        background={colors.linear2}
+        />
+      <ReportComponent
         icon="account-circle"
         title="Profile"
         description="All details about your profile"

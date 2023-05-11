@@ -8,11 +8,11 @@ import { UniversalContainerStyle as styles1 } from '../../styles/index';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
 import { FaqScreenStyle as styles, ActivityScreenStyle as styles2 } from '../../styles/index';
-import {questions} from '../../db/data/Faqs';
+import { Tips } from '../../db/data/Tips';
 
-const FaqScreen = ({ navigation }) => {
+const TipScreen = ({ navigation }) => {
   const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(-1);
-
+  const [data, setData] = useState(Tips);
   useEffect(() => {
     const backAction = () => {
       navigation.goBack();
@@ -34,8 +34,8 @@ const FaqScreen = ({ navigation }) => {
     setSearchValue('');
   }
 
-  const filteredData = questions.filter(entry =>
-    entry.question.toString().toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+  const filteredData = data.filter(entry =>
+    entry.title.toString().toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
   );
 
   const handleQuestionPress = (index) => {
@@ -76,7 +76,7 @@ const FaqScreen = ({ navigation }) => {
               }]}
               onPress={() => handleQuestionPress(index)}
             >
-              <Text style={styles.questionText}>{item.question}</Text>
+              <Text style={styles.questionText}>{item.title}</Text>
               <Ionicons
                 name={selectedQuestionIndex === index ? 'ios-remove-circle' : 'ios-add-circle'}
                 size={24}
@@ -85,12 +85,12 @@ const FaqScreen = ({ navigation }) => {
             </TouchableOpacity>
             {selectedQuestionIndex === index && (
               <Text key={`${index}_answer`} style={styles.answerText}>
-                {item.answer}
+                {item.description}
               </Text>
             )}
           </React.Fragment>
         ))}
-        <View style={{marginBottom:'50%'}}></View>
+        <View style={{ marginBottom: '50%' }}></View>
       </ScrollView>
 
     </LinearGradient>
@@ -98,4 +98,4 @@ const FaqScreen = ({ navigation }) => {
 
 };
 
-export default FaqScreen;
+export default TipScreen;

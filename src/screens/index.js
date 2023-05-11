@@ -13,3 +13,4 @@ export * from './ProfitLossReportScreen';
 export * from './IncomeDetailScreen';
 export * from './ExpenseDetailScreen';
 export * from './QuoteScreen';
+export * from './TipScreen';

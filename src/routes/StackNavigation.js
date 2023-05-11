@@ -12,7 +12,7 @@ import {
     ProfileScreen, ExpenseDetailScreen,
     AddExpenseScreen, AddIncomeScreen,
     SecondSplashScreen, ProfitLossReportScreen,
-    QuoteScreen
+    QuoteScreen, TipScreen
 } from '../screens/index';
 
 
@@ -41,6 +41,7 @@ const StackNavigation = () => {
                 <Stack.Screen name={RouteName.INCOME_DETAIL_SCREEN} component={IncomeDetailScreen}  options={{ headerTitle: 'Income' }}/>
                 <Stack.Screen name={RouteName.EXPENSE_DETAL_SCREEN} component={ExpenseDetailScreen}  options={{ headerTitle: 'Expense' }}/>
                 <Stack.Screen name={RouteName.QUOTE_SCREEN} component={QuoteScreen}  options={{ headerTitle: 'Get A Quote' }}/>
+                <Stack.Screen name={RouteName.TIPS_SCREEN} component={TipScreen}  options={{ headerTitle: 'Tips' }}/>
 
             </Stack.Navigator>
         </NavigationContainer>
