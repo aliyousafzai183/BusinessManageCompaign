@@ -14,6 +14,7 @@ const RouteName = {
     PROFIT_LOSS_REPORT_SCREEN: 'profitlossreportscreen',
     INCOME_DETAIL_SCREEN: 'incomedetailscreen',
     EXPENSE_DETAL_SCREEN: 'expensedetailscreen',
+    QUOTE_SCREEN: 'quotescreen',
 
     // authentication screens
     SPLASH_SCREEN: 'splashscreen',

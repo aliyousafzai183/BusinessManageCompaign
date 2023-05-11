@@ -13,3 +13,4 @@ export * from './SecondSplashScreenStyle';
 export * from './components';
 export * from './IncomeDetailScreenStyle';
 export * from './ExpenseDetailScreenStyle';
+export * from './QuoteScreenStyles';

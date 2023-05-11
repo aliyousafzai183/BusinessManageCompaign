@@ -12,6 +12,13 @@ const MenuScreen = () => {
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
       <ScrollView>
       <ReportComponent
+        icon="comment-quote-outline"
+        title="Get a Quote"
+        description="Get a quote for your business"
+        route={RouteName.QUOTE_SCREEN}
+        background={colors.plusButton}
+        />
+      <ReportComponent
         icon="account-circle"
         title="Profile"
         description="All details about your profile"

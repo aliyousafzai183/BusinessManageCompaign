@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, BackHandler, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, BackHandler, Alert,ToastAndroid } from 'react-native';
 
 // styles
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
@@ -8,10 +8,12 @@ import colors from '../../utils/colors';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { HomeScreenStyle as styles } from '../../styles/index';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import GetData from '../../db/data/GetData';
 import GetProfileData from '../../db/profile/GetProfileData';
 import { useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
 
 // component
 import {
@@ -24,6 +26,8 @@ const HomeScreeen = ({ navigation }) => {
   const [showMetrics, setShowMetrics] = useState(false);
   const [profileCompleted, setProfileCompleted] = useState(false);
   const [data, setData] = useState([]);
+  const [quotes, setQuotes] = useState([]);
+  const [internet, setInternet] = useState(false);
 
   const [metrics, setMetrics] = useState({
     totalRevenue: 0,
@@ -108,9 +112,31 @@ const HomeScreeen = ({ navigation }) => {
     }
   }
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      let lang = "en";
+      axios.get(`https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=${lang}`)
+        .then(response => {
+          setQuotes([response.data]);
+          setInternet(true);
+        })
+        .catch(error => {
+          setInternet(false);
+          ToastAndroid.show("Connect to internet for extra features", ToastAndroid.SHORT);
+        });
+
+    }, 5000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
 
   const handleProfileButton = () => {
     navigation.navigate(RouteName.PROFILE_SCREEN);
+  }
+
+  const handleQuotePress = () => {
+    navigation.navigate(RouteName.QUOTE_SCREEN);
   }
 
   // calculations
@@ -287,10 +313,25 @@ const HomeScreeen = ({ navigation }) => {
           :
           <></>
       }
+
       <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
+
+        {internet && quotes.map((quote, index) => (
+          <View style={styles.sliderContainer} key={index}>
+            <TouchableOpacity
+              style={styles.slide}
+              onPress={handleQuotePress}
+            >
+              <MaterialCommunityIcons name="comment-quote-outline" size={30} color={colors.plusButton} style={styles.quoteIcon} />
+              <Text style={styles.quoteText}>{quote.quoteText}</Text>
+              <Text style={styles.authorText}>- {quote.quoteAuthor}</Text>
+            </TouchableOpacity>
+          </View>
+        ))}
+
         <View style={styles.analyticsWrapper}>
           <HomeBoxComponent
             icon="wallet"
@@ -389,6 +430,8 @@ const HomeScreeen = ({ navigation }) => {
 
           </View>
         </View>
+
+        <View style={{ paddingBottom: '50%' }}></View>
 
       </ScrollView>
     </LinearGradient>
