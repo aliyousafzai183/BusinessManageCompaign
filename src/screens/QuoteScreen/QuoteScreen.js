@@ -39,14 +39,14 @@ const QuoteScreen = () => {
           ?
           quote
           :
-          "No Internet! Try connecting to the internet to avail that service"
+          "Connect to the internet to get quotes!"
         }</Text>
       </View>
       <TouchableOpacity style={styles.button} onPress={handleGetQuote}>
         <Text style={styles.buttonText}>{
           internet
           ?
-          "Get a Quote"
+          "More"
           :
           "Retry"
         }</Text>
