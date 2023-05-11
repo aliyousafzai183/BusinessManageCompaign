@@ -4,9 +4,6 @@ const SetData = async (businessName, founderName, phoneNumber, email, currency) 
     try {
       const profileData = {
         businessName: businessName,
-        founderName: founderName,
-        phoneNumber: phoneNumber,
-        email: email,
         currency: currency,
       };
       const jsonValue = JSON.stringify(profileData);

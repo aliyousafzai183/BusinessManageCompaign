@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Text, ScrollView, TouchableOpacity, LayoutAnimation, BackHandler } from 'react-native';
+import { Text, ScrollView, TouchableOpacity, LayoutAnimation, BackHandler, View, TextInput } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // styles
 import { UniversalContainerStyle as styles1 } from '../../styles/index';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../../utils/colors';
-import { FaqScreenStyle as styles } from '../../styles/index';
+import { FaqScreenStyle as styles, ActivityScreenStyle as styles2 } from '../../styles/index';
 
-const FaqScreen = ({navigation}) => {
+const FaqScreen = ({ navigation }) => {
   const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(-1);
 
   const questions = [
@@ -133,6 +134,16 @@ const FaqScreen = ({navigation}) => {
     };
   }, []);
 
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleFilterPress = () => {
+    setSearchValue('');
+  }
+
+  const filteredData = questions.filter(entry =>
+    entry.question.toString().toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+  );
+
   const handleQuestionPress = (index) => {
     if (index === selectedQuestionIndex) {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -145,9 +156,24 @@ const FaqScreen = ({navigation}) => {
 
   return (
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles1.container}>
+      <View style={styles2.topContainer}>
+        <View style={styles2.searchContainer}>
+          <Icon name="search" size={20} color={colors.background} style={styles2.searchIcon} />
+          <TextInput
+            style={styles2.textInput}
+            placeholder="Search"
+            placeholderTextColor={colors.background}
+            onChangeText={(value) => setSearchValue(value)}
+            value={searchValue}
+          />
+        </View>
+        <TouchableOpacity style={styles2.filterButton} onPress={handleFilterPress}>
+          <Icon name="filter" size={20} color={colors.background} />
+        </TouchableOpacity>
+      </View>
+
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.heading}>Frequently Asked Questions</Text>
-        {questions.map((item, index) => (
+        {filteredData.map((item, index) => (
           <React.Fragment key={index}>
             <TouchableOpacity
               style={[styles.questionContainer, selectedQuestionIndex === index && {
@@ -170,7 +196,9 @@ const FaqScreen = ({navigation}) => {
             )}
           </React.Fragment>
         ))}
+        <View style={{marginBottom:'50%'}}></View>
       </ScrollView>
+
     </LinearGradient>
   );
 

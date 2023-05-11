@@ -20,7 +20,7 @@ const MenuScreen = () => {
         />
       <ReportComponent
         icon="email"
-        title="Contact Us"
+        title="Email Us"
         description="Ask any question any time"
         route={RouteName.CONTACT_US_SCREEN}
         background="#17A2B8"

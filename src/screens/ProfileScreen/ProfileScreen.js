@@ -11,22 +11,16 @@ import GetProfileData from '../../db/profile/GetProfileData';
 const ProfileScreen = ({navigation}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [businessName, setBusinessName] = useState('');
-  const [founderName, setFounderName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
   const [currency, setCurrency] = useState('');
 
   // for styling purpose
   const [businessNameFocused, setBusinessNameFocused] = useState(false);
-  const [founderNameFocused, setFounderNameFocused] = useState(false);
-  const [phoneNumberFocused, setPhoneNumberFocused] = useState(false);
-  const [emailFocused, setEmailFocused] = useState(false);
   const [currencyFocused, setCurrencyFocused] = useState(false);
 
   const handleSave = () => {
     if (isEditing) {
       setIsEditing(!isEditing);
-      SetData(businessName, founderName, phoneNumber, email, currency);
+      SetData(businessName, currency);
     }
     setIsEditing(!isEditing);
   };
@@ -36,9 +30,6 @@ const ProfileScreen = ({navigation}) => {
       const data = await GetProfileData();
       if (data != null) {
         setBusinessName(data.businessName);
-        setFounderName(data.founderName);
-        setPhoneNumber(data.phoneNumber);
-        setEmail(data.email);
         setCurrency(data.currency);
       }
     };
@@ -100,97 +91,6 @@ const ProfileScreen = ({navigation}) => {
             editable={isEditing}
             onFocus={() => setBusinessNameFocused(true)}
             onBlur={() => setBusinessNameFocused(false)}
-            onSubmitEditing={handleDone} // called when done button is pressed
-            returnKeyType="done" // set return key type to done
-          />
-
-          {
-            founderNameFocused
-              ?
-              <Text style={styles.label}>Founder`s Name</Text>
-              :
-              <></>
-          }
-          <TextInput
-            style={[
-              styles.textInput,
-              founderNameFocused && { borderColor: colors.primary },
-              { color: isEditing ? colors.text : colors.label }
-            ]}
-            placeholderTextColor={colors.label}
-            placeholder={
-              founderNameFocused
-                ?
-                ''
-                :
-                "Founder Name"
-            }
-            value={founderName}
-            onChangeText={setFounderName}
-            editable={isEditing}
-            onFocus={() => setFounderNameFocused(true)}
-            onBlur={() => setFounderNameFocused(false)}
-            onSubmitEditing={handleDone} // called when done button is pressed
-            returnKeyType="done" // set return key type to done
-          />
-
-          {
-            phoneNumberFocused
-              ?
-              <Text style={styles.label}>Phone Number</Text>
-              :
-              <></>
-          }
-          <TextInput
-            style={[
-              styles.textInput,
-              phoneNumberFocused && { borderColor: colors.primary },
-              { color: isEditing ? colors.text : colors.label }
-            ]}
-            keyboardType='numeric'
-            placeholderTextColor={colors.label}
-            placeholder={
-              phoneNumberFocused
-                ?
-                ''
-                :
-                "Phone Number"
-            }
-            value={phoneNumber}
-            onChangeText={setPhoneNumber}
-            editable={isEditing}
-            onFocus={() => setPhoneNumberFocused(true)}
-            onBlur={() => setPhoneNumberFocused(false)}
-            onSubmitEditing={handleDone} // called when done button is pressed
-            returnKeyType="done" // set return key type to done
-          />
-
-          {
-            emailFocused
-              ?
-              <Text style={styles.label}>Email Address</Text>
-              :
-              <></>
-          }
-          <TextInput
-            style={[
-              styles.textInput,
-              emailFocused && { borderColor: colors.primary },
-              { color: isEditing ? colors.text : colors.label }
-            ]}
-            placeholderTextColor={colors.label}
-            placeholder={
-              emailFocused
-                ?
-                ''
-                :
-                "Email Address"
-            }
-            value={email}
-            onChangeText={setEmail}
-            editable={isEditing}
-            onFocus={() => setEmailFocused(true)}
-            onBlur={() => setEmailFocused(false)}
             onSubmitEditing={handleDone} // called when done button is pressed
             returnKeyType="done" // set return key type to done
           />

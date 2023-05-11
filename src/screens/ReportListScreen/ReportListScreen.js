@@ -11,7 +11,7 @@ const ReportListScreen = () => {
       <ScrollView>
       <ReportComponent
         icon="chart-pie"
-        title="Profit & Loss Report"
+        title="Final Report"
         description="Report of profit and loss statement"
         route={RouteName.PROFIT_LOSS_REPORT_SCREEN}
         background="#F3A712"
