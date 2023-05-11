@@ -78,7 +78,7 @@ function BottomNavigation() {
               <Text style={{ color: focused ? colors.plusButton : colors.linear2, fontSize: 12 }}>GENERATE</Text>
             </View>
           ),
-          header: () => <HeaderBar title="Reports" />
+          header: () => <HeaderBar title="Generate" />
         }}
       />
 
@@ -106,7 +106,7 @@ function BottomNavigation() {
               <Text style={{ color: focused ? colors.plusButton : colors.linear2, fontSize: 12 }}>REPORTS</Text>
             </View>
           ),
-          header: () => <HeaderBar title="Activity" />
+          header: () => <HeaderBar title="Reports" />
         }}
       />
 

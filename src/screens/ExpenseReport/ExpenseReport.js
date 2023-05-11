@@ -6,17 +6,13 @@ import GetData from '../../db/data/GetData';
 import { useFocusEffect } from '@react-navigation/native';
 import GetProfileData from '../../db/profile/GetProfileData';
 
-const ProfitLossReportScreen = ({ navigation }) => {
+const ExpenseReport = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [currency, setCurrency] = useState('');
 
   const [metrics, setMetrics] = useState({
-    totalRevenue: 0,
     totalExpense: 0,
     costOfSale: 0,
-    grossProfit: 0,
-    netProfit: 0,
-    totalReceivable: 0,
     totalPayable: 0,
     payroll: 0,
     others: 0,
@@ -46,14 +42,6 @@ const ProfitLossReportScreen = ({ navigation }) => {
 
   // calculations
   useEffect(() => {
-    const totalRevenue = data.reduce((acc, item) => {
-      if (item.incomeReport) {
-        return acc + item.totalIncome;
-      } else {
-        return acc;
-      }
-    }, 0);
-
 
     const totalExpense = data.reduce((acc, item) => {
       if (!item.incomeReport) {
@@ -71,14 +59,6 @@ const ProfitLossReportScreen = ({ navigation }) => {
       }
     }, 0);
 
-    const totalReceivable = data.reduce((acc, item) => {
-      if (item.incomeReport && !item.paid) {
-        return acc + item.totalIncome;
-      } else {
-        return acc;
-      }
-    }, 0);
-
     const totalPayable = data.reduce((acc, item) => {
       if (!item.incomeReport && !item.paid) {
         return acc + item.totalIncome;
@@ -87,21 +67,13 @@ const ProfitLossReportScreen = ({ navigation }) => {
       }
     }, 0);
 
-    const grossProfit = totalRevenue - costOfSale;
-
-    const netProfit = grossProfit - totalExpense;
-
     const payroll = totalExpense;
 
     const others = costOfSale;
 
     setMetrics({
-      totalRevenue,
       totalExpense,
       costOfSale,
-      grossProfit,
-      netProfit,
-      totalReceivable,
       totalPayable,
       payroll,
       others
@@ -129,11 +101,6 @@ const ProfitLossReportScreen = ({ navigation }) => {
         <Text style={styles.invoiceTitle}>REPORT</Text>
         <View style={styles.borderTop}></View>
         <View style={styles.row}>
-          <Text style={styles.label}>Total Income:</Text>
-          <Text style={styles.value}>{metrics.totalRevenue} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
           <Text style={styles.label}>Total Expense:</Text>
           <Text style={styles.value}>{metrics.totalExpense} {currency}</Text>
         </View>
@@ -144,18 +111,8 @@ const ProfitLossReportScreen = ({ navigation }) => {
         </View>
         <View style={styles.borderBottom}></View>
         <View style={styles.row}>
-          <Text style={styles.label}>Gross Profit:</Text>
-          <Text style={styles.value}>{metrics.grossProfit} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
           <Text style={styles.label}>Payroll:</Text>
           <Text style={styles.value}>{metrics.totalExpense} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
-          <Text style={styles.label}>Total Receivable:</Text>
-          <Text style={styles.value}>{metrics.totalReceivable} {currency}</Text>
         </View>
         <View style={styles.borderBottom}></View>
         <View style={styles.row}>
@@ -166,11 +123,6 @@ const ProfitLossReportScreen = ({ navigation }) => {
         <View style={styles.row}>
           <Text style={styles.label}>Operating Expenses:</Text>
           <Text style={styles.value}>{metrics.payroll + metrics.costOfSale} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
-          <Text style={styles.label}>Net Profit:</Text>
-          <Text style={styles.value}>{metrics.netProfit} {currency}</Text>
         </View>
         <View style={styles.borderBottom}></View>
         <View style={{marginBottom:'15%'}}></View>
@@ -226,4 +178,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfitLossReportScreen;
+export default ExpenseReport;

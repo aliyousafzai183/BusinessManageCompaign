@@ -10,6 +10,13 @@ const ReportListScreen = () => {
     <LinearGradient colors={[colors.linear1, colors.linear2]} style={styles.container}>
       <ScrollView>
       <ReportComponent
+        icon="briefcase-check"
+        title="Business Status"
+        description="Check status of your business"
+        route={RouteName.CHECK_STATUS_SCREEN}
+        background={colors.success}
+        />
+      <ReportComponent
         icon="chart-pie"
         title="Final Report"
         description="Report of profit and loss statement"
@@ -20,14 +27,14 @@ const ReportListScreen = () => {
         icon="chart-areaspline-variant"
         title="Income Report"
         description="Report of your business incomes"
-        route={RouteName.ACTIVITY_SCREEN}
+        route={RouteName.INCOME_REPORT}
         background="#28A745"
         />
       <ReportComponent
         icon="chart-histogram"
         title="Expense Report"
         description="Report of your business expenses"
-        route={RouteName.ACTIVITY_SCREEN}
+        route={RouteName.EXPENSE_REPORT}
         background="#DC3545"
       />
       <View style={{paddingTop:'15%'}}></View>

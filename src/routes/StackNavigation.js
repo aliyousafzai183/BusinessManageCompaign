@@ -12,7 +12,9 @@ import {
     ProfileScreen, ExpenseDetailScreen,
     AddExpenseScreen, AddIncomeScreen,
     SecondSplashScreen, ProfitLossReportScreen,
-    QuoteScreen, TipScreen
+    QuoteScreen, TipScreen,
+    IncomeReport, ExpenseReport,
+    CheckStatusScreen
 } from '../screens/index';
 
 
@@ -37,11 +39,14 @@ const StackNavigation = () => {
                 <Stack.Screen name={RouteName.ADD_INCOME_SCREEN} component={AddIncomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.ADD_EXPENSE_SCREEN} component={AddExpenseScreen} options={{ headerShown: false }} />
                 <Stack.Screen name={RouteName.PROFILE_SCREEN} component={ProfileScreen}  options={{ headerTitle: 'Profile' }}/>
-                <Stack.Screen name={RouteName.PROFIT_LOSS_REPORT_SCREEN} component={ProfitLossReportScreen}  options={{ headerTitle: 'Profit & Loss Report' }}/>
+                <Stack.Screen name={RouteName.PROFIT_LOSS_REPORT_SCREEN} component={ProfitLossReportScreen}  options={{ headerTitle: 'Final' }}/>
                 <Stack.Screen name={RouteName.INCOME_DETAIL_SCREEN} component={IncomeDetailScreen}  options={{ headerTitle: 'Income' }}/>
                 <Stack.Screen name={RouteName.EXPENSE_DETAL_SCREEN} component={ExpenseDetailScreen}  options={{ headerTitle: 'Expense' }}/>
                 <Stack.Screen name={RouteName.QUOTE_SCREEN} component={QuoteScreen}  options={{ headerTitle: 'Get A Quote' }}/>
                 <Stack.Screen name={RouteName.TIPS_SCREEN} component={TipScreen}  options={{ headerTitle: 'Tips' }}/>
+                <Stack.Screen name={RouteName.INCOME_REPORT} component={IncomeReport}  options={{ headerTitle: 'Income' }}/>
+                <Stack.Screen name={RouteName.EXPENSE_REPORT} component={ExpenseReport}  options={{ headerTitle: 'Expense' }}/>
+                <Stack.Screen name={RouteName.CHECK_STATUS_SCREEN} component={CheckStatusScreen}  options={{ headerTitle: 'Expense' }}/>
 
             </Stack.Navigator>
         </NavigationContainer>

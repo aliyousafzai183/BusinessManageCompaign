@@ -12,14 +12,9 @@ const ProfitLossReportScreen = ({ navigation }) => {
 
   const [metrics, setMetrics] = useState({
     totalRevenue: 0,
-    totalExpense: 0,
-    costOfSale: 0,
     grossProfit: 0,
     netProfit: 0,
     totalReceivable: 0,
-    totalPayable: 0,
-    payroll: 0,
-    others: 0,
   });
 
 
@@ -79,32 +74,15 @@ const ProfitLossReportScreen = ({ navigation }) => {
       }
     }, 0);
 
-    const totalPayable = data.reduce((acc, item) => {
-      if (!item.incomeReport && !item.paid) {
-        return acc + item.totalIncome;
-      } else {
-        return acc;
-      }
-    }, 0);
-
     const grossProfit = totalRevenue - costOfSale;
 
     const netProfit = grossProfit - totalExpense;
 
-    const payroll = totalExpense;
-
-    const others = costOfSale;
-
     setMetrics({
       totalRevenue,
-      totalExpense,
-      costOfSale,
       grossProfit,
       netProfit,
       totalReceivable,
-      totalPayable,
-      payroll,
-      others
     });
   }, [data]);
 
@@ -134,38 +112,13 @@ const ProfitLossReportScreen = ({ navigation }) => {
         </View>
         <View style={styles.borderBottom}></View>
         <View style={styles.row}>
-          <Text style={styles.label}>Total Expense:</Text>
-          <Text style={styles.value}>{metrics.totalExpense} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
-          <Text style={styles.label}>Cost of Sales:</Text>
-          <Text style={styles.value}>{metrics.costOfSale} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
           <Text style={styles.label}>Gross Profit:</Text>
           <Text style={styles.value}>{metrics.grossProfit} {currency}</Text>
         </View>
         <View style={styles.borderBottom}></View>
         <View style={styles.row}>
-          <Text style={styles.label}>Payroll:</Text>
-          <Text style={styles.value}>{metrics.totalExpense} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
           <Text style={styles.label}>Total Receivable:</Text>
           <Text style={styles.value}>{metrics.totalReceivable} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
-          <Text style={styles.label}>Total Payable:</Text>
-          <Text style={styles.value}>{metrics.totalPayable} {currency}</Text>
-        </View>
-        <View style={styles.borderBottom}></View>
-        <View style={styles.row}>
-          <Text style={styles.label}>Operating Expenses:</Text>
-          <Text style={styles.value}>{metrics.payroll + metrics.costOfSale} {currency}</Text>
         </View>
         <View style={styles.borderBottom}></View>
         <View style={styles.row}>
