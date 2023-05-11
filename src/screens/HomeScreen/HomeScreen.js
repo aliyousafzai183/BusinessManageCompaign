@@ -362,7 +362,7 @@ const HomeScreeen = ({ navigation }) => {
           onPress={() => setShowMetrics(!showMetrics)}
           style={styles.button}
         >
-          <Text style={styles.text}>See Your Business Metrics</Text>
+          <Text style={styles.text}>Your Business Metrics</Text>
           <MaterialIcons name={showMetrics ? "keyboard-arrow-up" : "keyboard-arrow-down"} size={30} color={colors.plusButton} />
         </TouchableOpacity>
 
