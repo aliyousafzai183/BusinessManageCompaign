@@ -75,7 +75,7 @@ function BottomNavigation() {
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
               <Ionicons name="document-text-outline" size={25} color={focused ? colors.plusButton : colors.linear2} />
-              <Text style={{ color: focused ? colors.plusButton : colors.linear2, fontSize: 12 }}>REPORT</Text>
+              <Text style={{ color: focused ? colors.plusButton : colors.linear2, fontSize: 12 }}>GENERATE</Text>
             </View>
           ),
           header: () => <HeaderBar title="Reports" />
@@ -103,7 +103,7 @@ function BottomNavigation() {
           tabBarIcon: ({ focused }) => (
             <View style={styles.iconContainer}>
               <Feather name="activity" size={25} color={focused ? colors.plusButton : colors.linear2} />
-              <Text style={{ color: focused ? colors.plusButton : colors.linear2, fontSize: 12 }}>ACTIVITY</Text>
+              <Text style={{ color: focused ? colors.plusButton : colors.linear2, fontSize: 12 }}>REPORTS</Text>
             </View>
           ),
           header: () => <HeaderBar title="Activity" />
